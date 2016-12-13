@@ -1,0 +1,3 @@
+- Distinguish Destiny's Child and Beyonce
+- Natural Language work - most used words
+- Tabs for different albums
