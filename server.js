@@ -79,15 +79,26 @@ MongoClient.connect(url, (err,database) => {
 				{ $text : 
 					{ $search : req.query.searchTerm }
 				},
-				{ "title" : 1, "album" : 1 }
+				{ "title" : 1, "album" : 1, "lyrics" : 1}
 			)
 		.toArray(
 			(err, result) => {
 				console.log('getting toArray');
-				console.log(result);
+				console.log(result[0]);
+				const regExSearchTerm = new RegExp(req.query.searchTerm, 'igm');
+				var matchesArray = [];
+				result.forEach( (element) => {
+					console.log(element["lyrics"]);
+					matchesArray = element["lyrics"].match(regExSearchTerm);
+					console.log(regExSearchTerm);
+					console.log(matchesArray);
+					console.log(matchesArray.length);
+					element["matches"] = matchesArray.length;
+				});
 				if (err) return res.send(err)
 				// res.send(result);
-				res.render('results', { result: result })
+				console.log(result);
+				res.render('results', { handlebarVariable : result })
 			}
 		)
 	})
