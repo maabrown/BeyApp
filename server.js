@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const cred = require('./cred/credentials.js');
 const exphbs = require('express-handlebars');
-
+const highlighter = require('keyword-highlighter');
 
 var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 var db;
@@ -15,6 +15,7 @@ app.engine('handlebars', exphbs({
 	layoutsDir: './prod/views/layouts/',
 	defaultLayout: 'main'
 }));
+
 app.set('view engine', 'handlebars');
 app.set('views', process.cwd() + '/prod/views/');
 app.set('port', process.env.PORT || 3000);
@@ -69,7 +70,7 @@ MongoClient.connect(url, (err,database) => {
 		// 		// res.render('results', { results: results })
 		// 	}
 		// )
-		res.render('search');
+		res.render('main');
 	})
 
 	router.get('/lyrics', (req,res) => {
@@ -86,9 +87,11 @@ MongoClient.connect(url, (err,database) => {
 				console.log('getting toArray');
 				console.log(result[0]);
 				const regExSearchTerm = new RegExp(req.query.searchTerm, 'igm');
+				const regExReplaceHTML = new RegExp("\/n", 'igm')
 				var matchesArray = [];
 				result.forEach( (element) => {
 					console.log(element["lyrics"]);
+					console.log(typeof element["lyrics"]);
 					matchesArray = element["lyrics"].match(regExSearchTerm);
 					console.log(regExSearchTerm);
 					console.log(matchesArray);
@@ -97,8 +100,9 @@ MongoClient.connect(url, (err,database) => {
 				});
 				if (err) return res.send(err)
 				// res.send(result);
-				console.log(result);
-				res.render('results', { handlebarVariable : result })
+				console.log(req.query.searchTerm);
+				var term = req.query.searchTerm.toString();
+				res.render('results', { searchTerm : term , handlebarVariable : result, })
 			}
 		)
 	})

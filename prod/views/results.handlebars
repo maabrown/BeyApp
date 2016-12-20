@@ -1,12 +1,18 @@
-<div>
+<div class="context">
 	<ul>
 	{{#each handlebarVariable}}
 	<li>{{this.title}}</li>
 	<li>{{this.album}}</li>
 	<li>{{this.matches}}</li>
+	<div id="lyricsDiv">{{this.lyrics}}</div>
+
 	{{/each}}
 	</ul>
 
-	<div>This is the results page</div>
-	
+		<div class="searchTermDiv">{{searchTerm}}</div>
+
+
+	<div>This is the results page!</div>
+
 </div>
+

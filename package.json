@@ -12,10 +12,12 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "keyword-highlighter": "^1.0.6",
     "mongodb": "^2.2.14"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "keyword-highlighter": "^1.0.6",
     "nodemon": "^1.11.0"
   }
 }
