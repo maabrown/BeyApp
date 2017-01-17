@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 // when you get /admin use the AdminRouter registered above
-app.use('/admin', adminRouter);
+// app.use('/admin', adminRouter);
 
 
 MongoClient.connect(url, (err,database) => {
@@ -74,9 +74,9 @@ MongoClient.connect(url, (err,database) => {
 	// 	})
 	// });
 
-	router.get('/', (req,res) => {
-		res.render('search');
-	});
+	// router.get('/', (req,res) => {
+	// 	res.render('search');
+	// });
 
 	router.get('/search', (req,res) => {
 		// console.log(req.body.searchTerm)
@@ -189,10 +189,16 @@ MongoClient.connect(url, (err,database) => {
 		)
 	})
 
+	// '*' means all other routes
+	app.get('*', function(req,res) {
+		res.sendFile(__dirname + '/prod/index.html')
+	})
 })
+
+
 
 // start app after getting the 'port' variable
 app.listen(app.get('port'));
-
+console.log('Magic at ' + app.get('port'));
 
 
