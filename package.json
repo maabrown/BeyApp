@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "keyword-highlighter": "^1.0.6",
     "nodemon": "^1.11.0"
   }
 }
