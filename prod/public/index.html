@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Beyonce Lyric Application</title>
+		
+	</head>
+
+	<body ng-app="sampleApp" ng-controller="NerdController">
+
+		<h1>This is only the beginning!</h1>
+
+		<ul>
+			<li><a href="/nerds">nerds</a></li>
+		</ul>
+
+		<div ng-view></div>
+
+		<form action="/quotes" method="POST">
+			<input type="text" placeholder="name" name="name">
+			<input type="text" placeholder="quote" name="quote">
+			<button type="submit">Submit</button>
+		</form>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+
+		<script type="text/javascript" src="js/controllers/MainCtrl.js"></script>
+		<script type="text/javascript" src="js/controllers/NerdCtrl.js"></script>
+		<script type="text/javascript" src="js/services/NerdService.js"></script>
+		<script type="text/javascript" src="js/appRoutes.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>

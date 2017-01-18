@@ -28,7 +28,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // sets directory for application's views
-app.set('views', process.cwd() + '/prod/views/');
+app.set('views', process.cwd() + '/prod/public/views/');
 
 // sets the port value 
 // process.env is the environment variable which can change depending 
@@ -191,7 +191,7 @@ MongoClient.connect(url, (err,database) => {
 
 	// '*' means all other routes
 	app.get('*', function(req,res) {
-		res.sendFile(__dirname + '/prod/index.html')
+		res.sendFile(__dirname + '/prod/public/index.html')
 	})
 })
 
