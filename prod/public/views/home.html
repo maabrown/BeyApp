@@ -1,3 +1,8 @@
 <h1>THIS IS HOME</h1>
 
-<h3> {{ tagline }}</h3>
+<ul>
+	<li ng-repeat="song in songs">
+		<div> {{ song.title }}</div>
+		<div> {{ song.album }}</div>
+	</li>
+</ul>

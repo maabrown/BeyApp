@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 // when you get /admin use the AdminRouter registered above
-// app.use('/admin', adminRouter);
+app.use('/admin', adminRouter);
 
 
 MongoClient.connect(url, (err,database) => {
@@ -80,23 +80,21 @@ MongoClient.connect(url, (err,database) => {
 
 	router.get('/search', (req,res) => {
 		// console.log(req.body.searchTerm)
-		// db.collection('lyrics')
-		// .find(
-		// 		{ $text : 
-		// 			{ $search : "pray" }
-		// 		},
-		// 		{ "title" : 1, "album" : 1 }
-		// 	)
-		// .toArray(
-		// 	(err, result) => {
-		// 		console.log('getting toArray');
-		// 		console.log(result);
-		// 		if (err) return res.send(err)
-		// 		res.send(result);
-		// 		// res.render('results', { results: results })
-		// 	}
-		// )
-		res.render('main');
+		console.log('it has hit search');
+		
+		db.collection('lyrics')
+		.find(
+				{ $text : 
+					{ $search : 'pray' }
+				},
+				{ "title" : 1, "album" : 1 }
+			)
+		.toArray(
+			(err, result) => {
+				if (err) return res.send(err)
+				res.send(result);		
+			}
+		)
 	})
 
 	router.get('/lyrics', (req,res) => {
@@ -190,7 +188,7 @@ MongoClient.connect(url, (err,database) => {
 	})
 
 	// '*' means all other routes
-	app.get('*', function(req,res) {
+	router.get('*', function(req,res) {
 		res.sendFile(__dirname + '/prod/public/index.html')
 	})
 })
