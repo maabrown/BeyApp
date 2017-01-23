@@ -9,6 +9,7 @@ Please feel free to explore my code. Currently this is made using the following 
 - JS
 - Gulp (Automation)
 - HandlebarsJS (Templating)
+- AngularJS
 
 ### Back-End
 - Express (Route Handling)
