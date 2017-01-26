@@ -5,16 +5,16 @@
 		
 	</head>
 
-	<body ng-app="sampleApp" ng-controller="NerdController">
+	<body ng-app="sampleApp">
 
 		<h1>Welcome to the Beyonce Lyric App!</h1>
-
-		<div ng-view></div>
 
 		<form novalidate action="/getLyrics" method="GET">
 			<input type="text" placeholder="What's The Word?" name="searchTerm">
 			<button type="submit">Submit</button>
 		</form>
+
+		<div ng-view></div>
 
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
