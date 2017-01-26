@@ -2,6 +2,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	
 	$routeProvider
 		.when('/', {
+			templateUrl: '/../../views/start.html',
+			controller: 'StarterController'
+		})
+
+		.when('/example', {
 			templateUrl: '/../../views/home.html',
 			controller: 'MainController'
 		})
@@ -10,6 +15,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: '/../../views/nerd.html',
 			controller: 'NerdController'
 		})
+
+		.when('/getLyrics', {
+			templateUrl: '/../../views.results.html',
+			controller: 'StarterController'
+		});
 
 	$locationProvider.html5Mode({
 		enabled: true,

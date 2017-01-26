@@ -97,6 +97,24 @@ MongoClient.connect(url, (err,database) => {
 		)
 	})
 
+	// what you get back from form is req.body
+	router.get('/getLyrics', (req,res) => {
+		console.log(req.query);
+		db.collection('lyrics')
+			.find(
+				{ $text :
+					{ $search : req.query.searchTerm}	
+				},
+				{ "title" : 1, "album" : 1 }
+			)
+			.toArray(
+				(err, result) => {
+					if (err) return console.log(err)
+					console.log(result)
+				}
+			)
+	})
+
 	router.get('/lyrics', (req,res) => {
 		console.log(req.query.searchTerm);
 		db.collection('lyrics')
