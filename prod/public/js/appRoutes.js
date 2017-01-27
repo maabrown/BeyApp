@@ -17,7 +17,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 
 		.when('/getLyrics', {
-			templateUrl: '/../../views.results.html',
+			templateUrl: '/../../views/results.html',
 			controller: 'StarterController'
 		});
 

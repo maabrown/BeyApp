@@ -1,5 +1,2 @@
-(function() {
-	angular.module('ResultCtrl', [].controller('ResultController', function($http,$scope) {
-		
-	}))
-})()
+angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope) {	
+});
