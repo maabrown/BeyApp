@@ -2,7 +2,7 @@ angular.module('MainCtrl', []).controller('MainController', function($http, $sco
 
 	$http({
 		method: 'GET',
-		url: '/search',
+		url: '/search'
 	})
 		.then(function(response,err) {
 			$scope.songs = response.data;

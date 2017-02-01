@@ -9,10 +9,14 @@
 
 		<h1>Welcome to the Beyonce Lyric App!</h1>
 
-		<form novalidate ng-controller="ResultController">
-			<input type="text" placeholder="What's The Word?" name="searchTerm">
-			<button type="submit">Submit</button>
-		</form>
+		<div ng-controller="ResultController">
+			<form novalidate ng-submit="getInformation(searchTerm)">
+				<input type="text" placeholder="What's The Word?" required ng-model="searchTerm">
+				<button type="submit">Submit</button>
+			</form>
+
+			<div></div>
+		</div>
 
 		<div ng-view></div>
 

@@ -16,14 +16,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'NerdController'
 		})
 
-		.when('/getLyrics', {
+		.when('/results', {
 			templateUrl: '/../../views/results.html',
-			controller: 'StarterController'
-		});
+			controller: 'ResultController'
+		})
 
 	$locationProvider.html5Mode({
 		enabled: true,
 		requireBase: false
-	});
+	})
 	
 }])
