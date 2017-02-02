@@ -21,6 +21,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'ResultController'
 		})
 
+		.otherwise( {
+			redirectTo: '/'
+		})
+
 	$locationProvider.html5Mode({
 		enabled: true,
 		requireBase: false
