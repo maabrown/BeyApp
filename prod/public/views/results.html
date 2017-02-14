@@ -1,8 +1,15 @@
 <h1>These are your results</h1>
 
+<h2>You searched for: {{searchTerm}}</h2>
+
+<h2>It was found {{totalMatches}} times</h2>
+
+<h2> Found in the following songs:</h2>
+
 <ul>
 	<li ng-repeat="x in songs">
 		<p> {{ x.title }}</p>
+		<p> {{ x.matches }}</p>
 	</li>
 </ul>
 

@@ -14,7 +14,8 @@ angular.module('ResultService', []).factory('ResultCall', function($http, $q, $l
 			return $http({
 						method: 'GET',
 						url: '/getLyrics',
-						params: { "param1" : searchTerm }
+						// you can name the parameters anything you want so I named it 'searchTerm'
+						params: { "searchTerm" : searchTerm }
 					})
 						// if successful return the response
 						.then(function(response) {

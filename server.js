@@ -100,18 +100,46 @@ MongoClient.connect(url, (err,database) => {
 	// what you get back from form is req.body
 	router.get('/getLyrics', (req,res) => {
 		console.log(req.query);
-		console.log(req.query.param1);
+		console.log(req.query.searchTerm);
 		db.collection('lyrics')
 			.find(
 				{ $text :
-					{ $search : req.query.param1}	
+					{ $search : req.query.searchTerm}	
 				},
-				{ "title" : 1, "album" : 1 }
+				{ "title" : 1, "album" : 1, "lyrics" : 1 }
 			)
 			.toArray(
 				(err, result) => {
 					if (err) return console.log(err);
 					console.log(result);
+					console.log("search Term: " + req.query.searchTerm);
+
+					// figuring out how many times the term is in the lyrics
+					// using ES6 for this function
+					// result is an array so using forEach to iterate
+					// using RegEx (object construction) to search for the term in the result
+					// igm are RegEx flags, i - ignore case, g - global match (find all cases), m - multiline
+					const regExSearchTerm = new RegExp(req.query.searchTerm, 'igm');
+					
+					// put this outside of scope of function so it can be continuously updated
+					// as forEach is run
+					var totalMatches = 0;
+
+					result.forEach( (individResultObj) => {
+
+						// individResultObj['lyrics'] - using bracket notation to get value in object
+						// using match() String function to find matches using RegEx: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
+						// match() returns an array of each match
+						var matchesArray = individResultObj['lyrics'].match(regExSearchTerm);
+						
+						// setting a new property on each result that is how many times the word is mentioned in the lyrics
+						// using the length property to see how many times it is mentioned
+						individResultObj['matches'] = matchesArray.length;
+
+						//
+						totalMatches = totalMatches + individResultObj['matches'];
+					})
+					result.push({ 'totalMatches' : totalMatches});
 					return res.json(result);
 				}
 			)
@@ -130,7 +158,7 @@ MongoClient.connect(url, (err,database) => {
 			(err, result) => {
 				console.log('getting toArray');
 				console.log(result[0]);
-				const regExSearchTerm = new RegExp(req.query.searchTerm, 'igm');
+
 				const regExReplaceHTML = new RegExp("\/n", 'igm')
 				var matchesArray = [];
 				result.forEach( (element) => {

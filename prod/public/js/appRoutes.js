@@ -20,7 +20,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: '/../../views/results.html',
 			controller: 'ResultController'
 		})
-
+		
 		.otherwise( {
 			redirectTo: '/'
 		})
