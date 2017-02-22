@@ -220,17 +220,20 @@ MongoClient.connect(url, (err,database) => {
 		// var findRegEx = /[A-Z]+/g;
 		// var replaceRegEx = "\n$&";
 		// var formattedLyrics = lyrics.replace(findRegEx, replaceRegEx);
-		console.log(lyrics);
+		console.log(req.query.songTitle);
+		console.log(req.query.albumTitle);
+		console.log(req.query.songLyrics);
+		console.log(req.query.featArtist);
 		db.collection('lyrics').insertOne( 
 			{
-			"title" : req.body.title,
-			"album" : req.body.album,
-			"featArtist" : req.body.featArtist,
-			"lyrics" : req.body.lyrics
+			"title" : req.query.songTitle,
+			"album" : req.query.albumTitle,
+			"featArtist" : req.query.featArtist,
+			"lyrics" : req.query.songLyrics
 			},
 			(err, result) => {
 				if (err) return res.send(err)
-				res.render('index', { songs : req })
+				res.send(result)
 			}
 		)
 	})

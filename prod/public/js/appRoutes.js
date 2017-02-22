@@ -20,6 +20,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: '/../../views/results.html',
 			controller: 'ResultController'
 		})
+
+		.when('/admin', {
+			templateUrl: '/../../views/admin.html',
+			controller: 'AdminController'
+		})
+
+		.when('/admin/confirm', {
+			templateUrl: '/../../views/confirmation.html',
+			controller: 'AdminController'
+		})
 		
 		.otherwise( {
 			redirectTo: '/'

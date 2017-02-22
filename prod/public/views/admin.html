@@ -1,0 +1,22 @@
+<div ng-controller="AdminController">
+<form novalidate ng-submit="addLyrics()">
+	<h4>Song Title</h4>
+	</br>
+	<input required type="text" name="songTitle" alt="Name of Song" ng-model="formData.songTitle">
+	</br>
+	<h4>Album</h4>
+	</br>
+	<input required type="text" name="albumTitle" alt="Name of Album" ng-model="formData.albumTitle">
+	</br>
+	<h4>Featured Artist</h4>
+	</br>
+	<input required type="text" name="featuredArtist" alt="Featured Artist" ng-model="formData.featArtist">
+	<p>Please use 'None' if necessary</p>
+	</br>
+	<h4>Lyrics</h4>
+	</br>
+	<textarea  required rows="6" cols="60" alt="Lyrics for songs" ng-model="formData.songLyrics">Type in lyrics here.</textarea>
+	</br>
+	<button type="submit"> Submit</button>
+</form>
+</div>
