@@ -4,17 +4,13 @@ angular.module('AdminCtrl', []).controller('AdminController', function($scope, $
 	// you can call this anything you want other than formData - just has to match your
 	// ng-model name that you use in the view
 
-	$scope.formData = {};
-	$scope.addLyrics = function() {
+	$scope.addLyrics = function(formData) {
 
-		AdminMethods.postLyrics($scope.formData)
+		AdminMethods.postLyrics(formData)
 
 			.then( function(response) {
-
-				console.log(response.config.params.songTitle);
 				$scope.$parent.songTitle = response.config.params.songTitle;
 				$scope.$parent.albumTitle = response.config.params.albumTitle;
-				console.log($scope.$parent);
 				$location.path('/admin/confirm')
 			})
 

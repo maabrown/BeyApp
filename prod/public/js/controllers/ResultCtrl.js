@@ -32,6 +32,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 
 					// slice returns an array, the array contains an object
 					$scope.$parent.totalMatches = totalMatches[0]['totalMatches'];
+					console.log($scope.$parent)
 
 					// this redirects the app without reloading the page
 					$location.path('/results');

@@ -6,16 +6,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'StarterController'
 		})
 
-		.when('/example', {
-			templateUrl: '/../../views/home.html',
-			controller: 'MainController'
-		})
-
-		.when('/nerds', {
-			templateUrl: '/../../views/nerd.html',
-			controller: 'NerdController'
-		})
-
 		.when('/results', {
 			templateUrl: '/../../views/results.html',
 			controller: 'ResultController'
@@ -29,6 +19,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/admin/confirm', {
 			templateUrl: '/../../views/confirmation.html',
 			controller: 'AdminController'
+		})
+
+		.when('/search', {
+			templateUrl: '/../../views/search.html',
+			controller: 'ResultController'
 		})
 		
 		.otherwise( {

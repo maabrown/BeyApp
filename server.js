@@ -52,6 +52,7 @@ app.use('/admin', adminRouter);
 
 
 MongoClient.connect(url, (err,database) => {
+	
 	if (err) return console.log(err);
 	db = database;
 
@@ -62,45 +63,10 @@ MongoClient.connect(url, (err,database) => {
 	);
 
 	router.use( (req,res,next) => {
-		
-		console.log('movement is happening');
 		next();
 	});
 
-	// router.get('/', (req,res) => {
-	// 	db.collection('quotes').find().toArray( function(err, results) {
-	// 		console.log(results);
-	// 	res.render('index');
-	// 	})
-	// });
-
-	// router.get('/', (req,res) => {
-	// 	res.render('search');
-	// });
-
-	router.get('/search', (req,res) => {
-		// console.log(req.body.searchTerm)
-		console.log('it has hit search');
-		
-		db.collection('lyrics')
-		.find(
-				{ $text : 
-					{ $search : 'pray' }
-				},
-				{ "title" : 1, "album" : 1 }
-			)
-		.toArray(
-			(err, result) => {
-				if (err) return res.send(err)
-				res.send(result);		
-			}
-		)
-	})
-
-	// what you get back from form is req.body
 	router.get('/getLyrics', (req,res) => {
-		console.log(req.query);
-		console.log(req.query.searchTerm);
 		db.collection('lyrics')
 			.find(
 				{ $text :
@@ -145,74 +111,35 @@ MongoClient.connect(url, (err,database) => {
 			)
 	})
 
-	router.get('/lyrics', (req,res) => {
-		console.log(req.query.searchTerm);
-		db.collection('lyrics')
-		.find(
-				{ $text : 
-					{ $search : req.query.searchTerm }
-				},
-				{ "title" : 1, "album" : 1, "lyrics" : 1}
-			)
-		.toArray(
-			(err, result) => {
-				console.log('getting toArray');
-				console.log(result[0]);
+	// router.post('/quotes', (req,res) => {
+	// 	db.collection('quotes').save(req.body, (err, result) => {
+	// 		if (err) return console.log(err);
+	// 	})
+	// 	console.log(req.body);
 
-				const regExReplaceHTML = new RegExp("\/n", 'igm')
-				var matchesArray = [];
-				result.forEach( (element) => {
-					console.log(element["lyrics"]);
-					console.log(typeof element["lyrics"]);
-					matchesArray = element["lyrics"].match(regExSearchTerm);
-					console.log(regExSearchTerm);
-					console.log(matchesArray);
-					console.log(matchesArray.length);
-					element["matches"] = matchesArray.length;
-				});
-				if (err) return res.send(err)
-				// res.send(result);
-				console.log(req.query.searchTerm);
-				var term = req.query.searchTerm.toString();
-				res.render('results', { searchTerm : term , handlebarVariable : result, })
-			}
-		)
-	})
+	// });
 
-	router.post('/quotes', (req,res) => {
-		db.collection('quotes').save(req.body, (err, result) => {
-			if (err) return console.log(err);
-		})
-		console.log(req.body);
+	// router.put('/quotes', (req,res) => {
+	// 	db.collection('quotes').findOneAndUpdate(
+	// 		{ "name" : "bey"},
+	// 		{ "$set" : { "quote" : req.body.quote}},
+	// 		{ "sort" : {"_id" : -1 }},
+	// 		(err, result) => {
+	// 			if (err) return res.send(err)
+	// 			res.send(result)
+	// 		}
+	// 	)
+	// })
 
-	});
-
-	router.put('/quotes', (req,res) => {
-		db.collection('quotes').findOneAndUpdate(
-			{ "name" : "bey"},
-			{ "$set" : { "quote" : req.body.quote}},
-			{ "sort" : {"_id" : -1 }},
-			(err, result) => {
-				if (err) return res.send(err)
-				res.send(result)
-			}
-		)
-	})
-
-	router.delete('/quotes', (req,res) => {
-		db.collection('quotes').findOneAndDelete(
-			{ "name" : req.body.name },
-			(err, result) => {
-				if (err) return res.send(err)
-				res.send('It is done')
-			}
-		)
-	})
-
-	adminRouter.get('/', (req, res) => {
-		console.log('second router working');
-		res.render('admin');
-	})
+	// router.delete('/quotes', (req,res) => {
+	// 	db.collection('quotes').findOneAndDelete(
+	// 		{ "name" : req.body.name },
+	// 		(err, result) => {
+	// 			if (err) return res.send(err)
+	// 			res.send('It is done')
+	// 		}
+	// 	)
+	// })
 
 	adminRouter.post('/', (req,res) => {
 		console.log('get adminRouter PUT method');
@@ -236,6 +163,10 @@ MongoClient.connect(url, (err,database) => {
 				res.send(result)
 			}
 		)
+	})
+
+	adminRouter.delete('/', (req,res) => {
+
 	})
 
 	// '*' means all other routes

@@ -3,7 +3,7 @@
 // $http method is used for API call
 // $q is used to return promise
 
-angular.module('AdminService', []).factory('AdminMethods', function($http, $q) {
+angular.module('AdminService', []).factory('AdminMethods', function($http, $q, $location) {
 
 	// you return an object that will have multiple methods on it
 
