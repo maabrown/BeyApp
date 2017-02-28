@@ -1,7 +1,7 @@
 angular.module('ResultTabs', []).directive('resultTabs', function() {
 	return {
-		restrict: 'A',
+		restrict: 'E',
 		templateUrl: '../../views/result-tabs.html',
-		controller: 'ResultCtrl'
+		controller: 'ResultController'
 	}
 })

@@ -166,7 +166,7 @@ MongoClient.connect(url, (err,database) => {
 	})
 
 	adminRouter.delete('/', (req,res) => {
-
+		
 	})
 
 	// '*' means all other routes
