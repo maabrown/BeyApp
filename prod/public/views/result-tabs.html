@@ -1,8 +1,18 @@
 <ul class="nav nav-pills">
-	<li>Dangerously In Love</li>
-	<li>B'Day</li>
-	<li>I Am...Sasha Fierce</li>
-	<li>4</li>
-	<li>Beyonce</li>
-	<li>Lemonade</li>
+	<li class="active"><a href="#dangerously" data-toggle="pill">Dangerously In Love</a></li>
+	<li><a href="#bday" data-toggle="pill">B'Day</a></li>
+	<li><a href="#sashaFierce" data-toggle="pill">I Am...Sasha Fierce</a></li>
+	<li><a href="#four" data-toggle="pill">4</a></li>
+	<li><a href="#beyonce" data-toggle="pill">Beyonce</a></li>
+	<li><a href="#lemonade" data-toggle="pill">Lemonade ({{numOfLemonadeSongs}})</a></li>
 </ul>
+
+<div class="tab-content">
+	<div>
+		<h2> {{ lemonadeArray[0].title }}</h2>
+	</div>
+
+	<div>
+		<h3></h3>
+	</div>
+</div>

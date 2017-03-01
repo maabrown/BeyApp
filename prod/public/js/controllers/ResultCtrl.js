@@ -1,5 +1,6 @@
 angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $location, ResultCall) {
 	
+
 	$scope.getInformation = function (term) {
 		
 		//getLyrics is defined as a property of the factory 'ResultCall' defined in ResultService.js - returns a promise
@@ -15,9 +16,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 				// data validation to make sure that the information being returned is an object
 				if (typeof response === "object") {
 					console.log(response);
-					console.log("this is response.data " + response.data)
-
-					var unchangedResponse = response;
+					console.log(response.data)
 
 					// splice returns an array of the item you removed
 					var totalMatches = response['data'].splice(-1, 1);
@@ -29,10 +28,51 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					
 					$scope.$parent.songs = response.data;
 					$scope.$parent.searchTerm = response.config.params.searchTerm;
+					$scope.$parent.dangerouslyArray = [];
+					$scope.$parent.bdayArray = [];
+					$scope.$parent.sashaArray = [];
+					$scope.$parent.fourArray = [];
+					$scope.$parent.beyonceArray = [];
+					$scope.$parent.lemonadeArray = [];
+
+					response.data.forEach( function(element, index, array) {
+						
+
+						console.log(element.album);
+
+						if (element.album === "Dangerously in Love") {
+							$scope.$parentdangerouslyArray.push(element);
+						}
+						else if (element.album === "Bday") {
+							$scope.$parentbdayArray.push(element);
+						}
+						else if (element.album === "I Am... Sasha Fierce"){
+							$scope.$parent.sashaArray.push(element);
+						}
+						else if (element.album == "4") {
+							$scope.$parent.fourArray.push(element);
+						}
+						else if (element.album === "Beyonce") {
+							$scope.$parent.beyonceArray.push(element);
+						}
+						else if (element.album === "Lemonade") {
+							$scope.$parent.lemonadeArray.push(element);
+						}
+					});
+
+						$scope.$parent.numOfDangerousSongs = $scope.$parent.dangerouslyArray.length;
+						$scope.$parent.numOfBdaySongs = $scope.$parent.bdayArray.length;
+						$scope.$parent.numOfSashaSongs = $scope.$parent.sashaArray.length;
+						$scope.$parent.numOfFourSongs = $scope.$parent.fourArray.length;
+						$scope.$parent.numOfBeyonceSongs = $scope.$parent.beyonceArray.length;						
+						$scope.$parent.numOfLemonadeSongs = $scope.$parent.lemonadeArray.length;
 
 					// slice returns an array, the array contains an object
 					$scope.$parent.totalMatches = totalMatches[0]['totalMatches'];
+
+					$scope.totalMatches = totalMatches[0]['totalMatches'];
 					console.log($scope.$parent)
+					console.log($scope.$parent.lemonadeArray);
 
 					// this redirects the app without reloading the page
 					$location.path('/results');
