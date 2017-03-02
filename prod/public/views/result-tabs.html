@@ -1,18 +1,21 @@
-<ul class="nav nav-pills">
-	<li class="active"><a href="#dangerously" data-toggle="pill">Dangerously In Love</a></li>
-	<li><a href="#bday" data-toggle="pill">B'Day</a></li>
-	<li><a href="#sashaFierce" data-toggle="pill">I Am...Sasha Fierce</a></li>
-	<li><a href="#four" data-toggle="pill">4</a></li>
-	<li><a href="#beyonce" data-toggle="pill">Beyonce</a></li>
-	<li><a href="#lemonade" data-toggle="pill">Lemonade ({{numOfLemonadeSongs}})</a></li>
-</ul>
+<!-- using angular-ui -->
+<uib-tabset justified="true">
+	<uib-tab heading="Dangerously In Love ({{numOfDangerousSongs}})"></uib-tab>
+	<uib-tab heading="B'Day ({{numOfBdaySongs}})"></uib-tab>
+	<uib-tab heading="I Am...Sasha Fierce ({{numOfSashaSongs}})"></uib-tab>
+	<uib-tab heading="4 ({{numOfFourSongs}})"></uib-tab>
+	<uib-tab heading="Beyonce ({{numOfBeyonceSongs}})"></uib-tab>
+	<uib-tab heading="Lemonade ({{numOfLemonadeSongs}})">
+		<ul>
+			<li ng-repeat="songs in lemonadeArray">
+				<uib-accordion>
+					<div uib-accordion-group class="panel-default" heading="{{songs.title}}">
+						<div ng-bind-html=songs.lyrics></div>
+					</div>
+				</uib-accordion>
+			</li>
+		</ul>
+	</uib-tab>
+</uib-tabset>
 
-<div class="tab-content">
-	<div>
-		<h2> {{ lemonadeArray[0].title }}</h2>
-	</div>
-
-	<div>
-		<h3></h3>
-	</div>
-</div>
+{{lemonadeArray[0].lyrics}}

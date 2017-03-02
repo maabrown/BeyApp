@@ -1,6 +1,6 @@
-angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $location, ResultCall) {
+angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $sce, $location, ResultCall) {
 	
-
+	$scope.albumNames = ['Dangerously In Love', 'B\'Day','I Am... Sasha Fierce', '4', 'Beyonce', 'Lemonade' ]
 	$scope.getInformation = function (term) {
 		
 		//getLyrics is defined as a property of the factory 'ResultCall' defined in ResultService.js - returns a promise
@@ -43,7 +43,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 						if (element.album === "Dangerously in Love") {
 							$scope.$parentdangerouslyArray.push(element);
 						}
-						else if (element.album === "Bday") {
+						else if (element.album === "B'Day") {
 							$scope.$parentbdayArray.push(element);
 						}
 						else if (element.album === "I Am... Sasha Fierce"){
@@ -56,6 +56,8 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 							$scope.$parent.beyonceArray.push(element);
 						}
 						else if (element.album === "Lemonade") {
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
 							$scope.$parent.lemonadeArray.push(element);
 						}
 					});

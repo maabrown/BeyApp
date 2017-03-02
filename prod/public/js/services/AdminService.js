@@ -10,6 +10,8 @@ angular.module('AdminService', []).factory('AdminMethods', function($http, $q, $
 	return {
 		postLyrics: function(formData) {
 			console.log(formData);
+			// formData.songLyrics = formData.songLyrics.replace(/(\\r|\\n)/g, "<br>");
+			
 			return $http({
 				method: 'POST',
 				url: 'admin/',
