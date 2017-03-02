@@ -6,16 +6,16 @@
 	<uib-tab heading="4 ({{numOfFourSongs}})"></uib-tab>
 	<uib-tab heading="Beyonce ({{numOfBeyonceSongs}})"></uib-tab>
 	<uib-tab heading="Lemonade ({{numOfLemonadeSongs}})">
-		<ul>
+		<ul id="lyricsList">
 			<li ng-repeat="songs in lemonadeArray">
 				<uib-accordion>
-					<div uib-accordion-group class="panel-default" heading="{{songs.title}}">
-						<div ng-bind-html=songs.lyrics></div>
+					<div uib-accordion-group class="panel-default" heading="{{songs.title}}" id="songTitleDiv">
+						<button ng-click="highlight()">Highlight</button>
+						<button ng-click="unhighlight()">Unhighlight</button>
+						<div ng-bind-html=songs.lyrics class="songLyricsDiv"></div>
 					</div>
 				</uib-accordion>
 			</li>
 		</ul>
 	</uib-tab>
 </uib-tabset>
-
-{{lemonadeArray[0].lyrics}}

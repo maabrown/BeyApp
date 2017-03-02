@@ -14,3 +14,7 @@ http://stackoverflow.com/questions/21295389/newline-character-working-for-consol
 Using $sce
 http://stackoverflow.com/questions/9381926/angularjs-insert-html-into-view/11640420#11640420
 http://stackoverflow.com/questions/18340872/how-do-you-use-sce-trustashtmlstring-to-replicate-ng-bind-html-unsafe-in-angu
+
+RegEx for \n\r
+http://stackoverflow.com/questions/784539/how-do-i-replace-all-line-breaks-in-a-string-with-br-tags
+

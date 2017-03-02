@@ -1,5 +1,21 @@
 angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $sce, $location, ResultCall) {
 	
+	$scope.highlight = function() {
+		var context = document.getElementById('lyricsList');
+		var highlightOptions = {
+			"exclude" : ["#songTitleDiv"]
+		};
+		console.log(context);
+		var instance = new Mark(context);
+		instance.mark($scope.$parent.searchTerm, highlightOptions);
+	}
+
+	$scope.unhighlight = function() {
+		var context = document.getElementById('lyricsList')
+		var instance = new Mark(context);
+		instance.unmark();
+	}
+
 	$scope.albumNames = ['Dangerously In Love', 'B\'Day','I Am... Sasha Fierce', '4', 'Beyonce', 'Lemonade' ]
 	$scope.getInformation = function (term) {
 		
