@@ -75,6 +75,13 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 			);
 	}) 
 
+	// login form submission
+	router.post('/login', passport.authenticate('local-login', {
+		failureRedirect: '/login',
+		successRedirect: '/admin',
+		failureFlash: true
+	}))
+
 	// sign up form
 	router.get('/signup', function(req, res) {
 		res.render(__dirname + '/views/signup.handlebars',
@@ -179,6 +186,10 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		)
 	})
 
+	adminRouter.get('/', (req,res) => {
+		res.send(_dirname + '/views/admin.html')
+	})
+
 	adminRouter.delete('/', (req,res) => {
 		
 	})
@@ -187,6 +198,6 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	router.get('*', function(req,res) {
 
 		// could i make this ('./index.html')?
-		res.sendFile(__dirname + './index.html')
+		res.sendFile(__dirname + '/index.html')
 	})
 };
