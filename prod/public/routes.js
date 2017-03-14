@@ -187,12 +187,32 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	})
 
 	adminRouter.get('/', (req,res) => {
-		res.send(_dirname + '/views/admin.html')
+		res.send('/views/admin.html')
+	})
+
+	router.get('/googleLogin', (req,res) => {
+		res.render(__dirname + '/views/google-auth.handlebars')
 	})
 
 	adminRouter.delete('/', (req,res) => {
 		
 	})
+
+	// scope is provided by Google
+	// we determine what scope and service we want from Google - here we only want
+	// basic profile information and user email
+	// this route sends them to Google auth - where they see consent screen and give app access
+	// to their information
+	// nothing happens inside this 'get' route because it is just for authentication
+	// source: https://cloud.google.com/nodejs/getting-started/authenticate-users
+	router.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile']}
+	))
+
+	// processing the authorization response
+	router.get('/auth/google/callback', passport.authenticate('google', {
+		successRedirect: '/admin/',
+		failureRedirect: '/'
+	}))
 
 	// '*' means all other routes
 	router.get('*', function(req,res) {
