@@ -3,10 +3,18 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	//THINGS TO FIX - PULL MONGOCLIENT TO THIS OUTER SCOPE AND DEFINE IT SO I DONT 
 	// HAVE TO REUSE IT FOR EVERY ROUTE
 
+	// DELETE THIS CODE - just extra middleware
 	router.use( (req,res,next) => {
 		next();
 	});
 
+/*
+	
+	API ROUTES FOR NON-SIGNED IN USER
+
+*/
+
+	// WHEN USER ENTERS A QUERY
 	router.get('/getLyrics', (req,res) => {
 		
 		MongoClient.connect(url, (err, database) =>  {
@@ -67,100 +75,12 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		})
 	})
 
-	// login form
-	router.get('/login', function(req, res) {
-		// loginMessage is inside passport.js
-		res.render(__dirname + '/views/login.handlebars' 
-			// { message : req.flash('loginMessage')}
-			);
-	}) 
+/*
 
-	// login form submission
-	router.post('/login', passport.authenticate('local-login', {
-		failureRedirect: '/login',
-		successRedirect: '/admin',
-		failureFlash: true
-	}))
+	ADMIN API ROUTES
 
-	// sign up form
-	router.get('/signup', function(req, res) {
-		res.render(__dirname + '/views/signup.handlebars',
-			{ message : req.flash('signupMessage')} 
-			);
-	});
+*/
 
-	// process form
-	// redirects from Passport docs
-	router.post('/signup', passport.authenticate('local-signup', {
-		failureRedirect: '/signup',
-		successRedirect: '/',
-		// allows for flash messages
-		failureFlash : true
-	}) )
-
-
-	// router.post('/signup', passport.authenticate('local-signup'),
-	// 	function(req, res) {
-	// 		console.log(res);
-	// 	}
-	// )
-
-	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
-	// can pass an array of functions to a route that continue in a waterfall fashion
-	router.get('/profile', isLoggedIn, function (req, res) {
-		res.render('profile.html', { user: req.user })
-	})
-
-	router.get('logout', function(req,res) {
-		// req.logout() is provided by passport
-		// req.logout ends a session of a user by removing the req.user property
-		req.logout();
-		// redirects them to homepage
-		res.redirect('/');
-	})
-
-
-	// this function is used to check authentication: http://stackoverflow.com/questions/38820251/what-is-req-isauthenticated-passportjs
-	// req.isAuthenticated returns 'true' if logged in - from PassportJS
-	function isLoggedIn(req,res,next) {
-
-		if ( req.isAuthenticated() ) {
-			return next();
-		}
-		else {
-			res.redirect('/');
-		}
-	}
-
-	// router.post('/quotes', (req,res) => {
-	// 	db.collection('quotes').save(req.body, (err, result) => {
-	// 		if (err) return console.log(err);
-	// 	})
-	// 	console.log(req.body);
-
-	// });
-
-	// router.put('/quotes', (req,res) => {
-	// 	db.collection('quotes').findOneAndUpdate(
-	// 		{ "name" : "bey"},
-	// 		{ "$set" : { "quote" : req.body.quote}},
-	// 		{ "sort" : {"_id" : -1 }},
-	// 		(err, result) => {
-	// 			if (err) return res.send(err)
-	// 			res.send(result)
-	// 		}
-	// 	)
-	// })
-
-	// router.delete('/quotes', (req,res) => {
-	// 	db.collection('quotes').findOneAndDelete(
-	// 		{ "name" : req.body.name },
-	// 		(err, result) => {
-	// 			if (err) return res.send(err)
-	// 			res.send('It is done')
-	// 		}
-	// 	)
-	// })
 
 	adminRouter.post('/', (req,res) => {
 		console.log('get adminRouter PUT method');
@@ -186,18 +106,80 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		)
 	})
 
-	adminRouter.get('/', (req,res) => {
-		res.send('/views/admin.html')
+	// FILL THIS OUT LATER
+	router.get('admin/deleteSong', (req,res) => {
+
+	});
+
+
+/*
+
+	ADMIN ROUTES FOR USERS
+
+*/
+
+	
+
+	// Login Form - has Google and Local Options
+	router.get('/admin/login', function(req, res) {
+		// loginMessage is inside passport.js
+		res.render(__dirname + '/views/signin.handlebars', 
+			{ message : req.flash('loginMessage')}
+			);
+	}) 
+
+
+	// Sign Up Form
+	router.get('/admin/signup', function(req, res) {
+		res.render(__dirname + '/views/signup.handlebars',
+			{ message : req.flash('signupMessage')} 
+			);
+	});
+
+	// Processing Form
+	// redirects from Passport docs
+	router.post('/admin/signup', passport.authenticate('local-signup', {
+		failureRedirect: '/admin/signup',
+		successRedirect: '/profile',
+		// allows for flash messages
+		failureFlash : true
+	}) )
+
+	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
+	// can pass an array of functions to a route that continue in a waterfall fashion
+	router.get('/profile', isLoggedIn, function (req, res) {
+		res.render('profile.handlebars', { user: req.user })
 	})
 
+	router.get('logout', function(req,res) {
+		// req.logout() is provided by passport
+		// req.logout ends a session of a user by removing the req.user property
+		req.logout();
+		// redirects them to homepage
+		res.redirect('/');
+	})
+
+
+	// QUESTION - IS THIS ROUTE STILL NECESSARY? shouldn't i just redirect them to '/auth/google'
 	router.get('/googleLogin', (req,res) => {
 		res.render(__dirname + '/views/google-auth.handlebars')
 	})
 
-	adminRouter.delete('/', (req,res) => {
-		
-	})
 
+/*
+
+	ADMIN AUTHENTICATION ROUTES
+
+*/
+	// LOCAL AUTHENTICATION
+	// login form submission
+	router.post('/admin/auth/local-login', passport.authenticate('local-login', {
+		failureRedirect: '/admin/local-login',
+		successRedirect: '/profile',
+		failureFlash: true
+	}))
+
+	// GOOGLE AUTHENTICATION
 	// scope is provided by Google
 	// we determine what scope and service we want from Google - here we only want
 	// basic profile information and user email
@@ -210,9 +192,55 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 
 	// processing the authorization response
 	router.get('/auth/google/callback', passport.authenticate('google', {
-		successRedirect: '/admin/',
+		successRedirect: '/profile',
 		failureRedirect: '/'
 	}))
+
+
+/*
+
+	ADMIN AUTHORIZATION AND CONNECTION ROUTES
+
+*/
+
+	//LOCAL AUTHORIZATION AND CONNECTION
+	router.get('/connect/local', function(req,res) {
+		res.render(__dirname + '/connect-local.handlebars', { message : req.flash('loginMessage') })
+	})
+
+	router.post('/connect/local', passport.authenticate('local-signup', {
+		successRedirect: '/profile',
+		failureRedirect: '/connect/local',
+		failureFlash: true
+	}))
+
+	// GOOGLE AUTHORIZATION AND CONNECTION
+	router.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email']}))
+
+	routher.get('/connect/google/callback', passport.authorize('google', {
+		successRedirect: '/profile',
+		failureRedirect: '/connect/google'
+	}))
+
+	// this function is used to check authentication: http://stackoverflow.com/questions/38820251/what-is-req-isauthenticated-passportjs
+	// req.isAuthenticated returns 'true' if logged in - from PassportJS
+	function isLoggedIn(req,res,next) {
+
+		if ( req.isAuthenticated() ) {
+			return next();
+		}
+		else {
+			res.redirect('/');
+		}
+	}
+
+
+
+/*
+
+	THE CATCH ALL ELSE ROUTE
+
+*/
 
 	// '*' means all other routes
 	router.get('*', function(req,res) {

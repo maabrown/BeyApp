@@ -11,7 +11,7 @@
 
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
-    <!-- show any messages that come back with authentication -->
+    <!-- show any messages that come back with a failed authentication in the local-login strategy-->
     {{#if message}}
         <div class="alert alert-danger"> {{ message }}</div>
     {{/if}}
@@ -33,7 +33,9 @@
 
     <hr>
 
-    <p>Need an account? <a href="/signup">Signup</a></p>
+
+
+    <p>Need an account? <a href="/admin/signup">Signup</a></p>
     <p>Or go <a href="/">home</a>.</p>
 
 </div>
