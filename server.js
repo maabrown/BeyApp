@@ -16,6 +16,7 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // signs into the database
 var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
@@ -33,12 +34,12 @@ mongooseDB.once('open', function () {
 
 // registers filename 'handlebars', and calls the exphb variable from above
 // and passes in the parmeters when it get a file with the extention
-app.engine('handlebars', exphbs({
-	layoutsDir: './prod/public/views'
-}));
+// app.engine('handlebars', exphbs({
+// 	layoutsDir: './prod/public/views'
+// }));
 
 // sets defaul engine to 'handlebars' which then triggers the app.engine line
-app.set('view engine', 'handlebars');
+// app.set('view engine', 'handlebars');
 
 // sets directory for application's views
 app.set('views', process.cwd() + '/prod/public/views/');
@@ -46,7 +47,7 @@ app.set('views', process.cwd() + '/prod/public/views/');
 // sets the port value 
 // process.env is the environment variable which can change depending 
 // on if it is on Heroku or on your local computer
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 
 // serves static conent for the app from the public directory
 // so prod/public/index.html is /index.html for the app
@@ -87,7 +88,7 @@ var adminRouter = express.Router();
 app.use('/', router);
 
 // when you get /admin use the AdminRouter registered above
-app.use('/admin', adminRouter);
+// app.use('/admin', adminRouter);
 
 
 // MongoDB connection doesn't have to hold the routers

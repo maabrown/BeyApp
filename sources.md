@@ -52,5 +52,20 @@ http://stackoverflow.com/questions/32153865/what-is-done-callback-function-in-pa
 Serialize and Deserialize Sessions
 http://stackoverflow.com/questions/19268812/do-i-implement-serialize-and-deserialize-nodesjs-passport-redisstore
 
+Translating Scotch Tutorial into AngularJS
+https://github.com/brandonmcquarie/easy-node-authentication-angular
 
+Res.render() vs res.sendFile()
+http://stackoverflow.com/questions/23875360/express-sendfile-vs-render
+	TL;DR - render allows you use templating engine like jade or Handlebars to update values
+			send just sends back the HTML file and you would have to use JS to update values
 
+Dirname vs .
+http://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js
+	TL;DR - dirname is the directory containing the file where you are using dirname
+			. is the directory containing the file where you ran the 'node' command on the command line
+
+Why use link function in Angular directives?
+http://stackoverflow.com/questions/20018507/angularjs-what-is-the-need-of-the-directives-link-function-when-we-already-had
+	TL;DR - use 'controllers' when you want business logic
+			use 'link' when you want DOM manipulation

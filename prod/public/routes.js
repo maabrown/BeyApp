@@ -117,15 +117,16 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	ADMIN ROUTES FOR USERS
 
 */
-
+	// in case someone presses the back button
+	router.get('/admin/login', function(req, res) {
+		res.sendFile(__dirname + '/views/signin.html');
+	})
 	
 
 	// Login Form - has Google and Local Options
-	router.get('/admin/login', function(req, res) {
+	router.get('/admin/auth/local-login', function(req, res) {
 		// loginMessage is inside passport.js
-		res.render(__dirname + '/views/signin.handlebars', 
-			{ message : req.flash('loginMessage')}
-			);
+		res.sendFile(__dirname + '/views/login.html');
 	}) 
 
 
@@ -148,7 +149,7 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
 	// can pass an array of functions to a route that continue in a waterfall fashion
 	router.get('/profile', isLoggedIn, function (req, res) {
-		res.render('profile.handlebars', { user: req.user })
+		res.sendFile(__dirname + '/views/profile.html', { user: req.user })
 	})
 
 	router.get('logout', function(req,res) {
@@ -197,6 +198,7 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	}))
 
 
+
 /*
 
 	ADMIN AUTHORIZATION AND CONNECTION ROUTES
@@ -217,7 +219,7 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	// GOOGLE AUTHORIZATION AND CONNECTION
 	router.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email']}))
 
-	routher.get('/connect/google/callback', passport.authorize('google', {
+	router.get('/connect/google/callback', passport.authorize('google', {
 		successRedirect: '/profile',
 		failureRedirect: '/connect/google'
 	}))
@@ -234,7 +236,28 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		}
 	}
 
+/*
+	
+	 UNLINK ACCOUNTS
 
+*/
+
+	router.get('/unlink/local', function(req,res) {
+		var user = req.user;
+		user.local.email = undefined;
+		user.local.password = undefined;
+		user.save(function(err) {
+			res.direct('/profile');
+		});
+	});
+
+	router.get('/unlink/google', function(req, res) {
+		var user = req.user;
+		user.google.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
 
 /*
 
@@ -245,7 +268,6 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	// '*' means all other routes
 	router.get('*', function(req,res) {
 
-		// could i make this ('./index.html')?
 		res.sendFile(__dirname + '/index.html')
 	})
 };
