@@ -25,6 +25,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: '/../../views/search.html',
 			controller: 'ResultController'
 		})
+
+		.when('/profile', {
+			templateUrl: '/../../views/profile.html',
+			controller: 'ProfileController'
+		})
+
+		.when('/connect/local', {
+			templateUrl: '/../../views/connect-local.html',
+			controller: 'SecondarySignupController'
+		})
 		
 		.otherwise( {
 			redirectTo: '/'

@@ -224,6 +224,12 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		failureRedirect: '/connect/google'
 	}))
 
+
+	router.get('/api/userData', isLoggedInAjax, function(req,res) {
+		return res.json(req.user);
+	})
+
+
 	// this function is used to check authentication: http://stackoverflow.com/questions/38820251/what-is-req-isauthenticated-passportjs
 	// req.isAuthenticated returns 'true' if logged in - from PassportJS
 	function isLoggedIn(req,res,next) {
@@ -233,6 +239,19 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 		}
 		else {
 			res.redirect('/');
+		}
+	}
+
+	// because this request is made in angular by the ProfileController the response
+	// has to be return as JSON to be used by our httpFactory
+	function isLoggedInAjax(req,res,next) {
+		
+		// if not authenticated
+		if (!req.isAuthenticated()) {
+			return res.json( { redirect: '/login'} );
+		}
+		else {
+			next();
 		}
 	}
 

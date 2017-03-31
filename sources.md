@@ -69,3 +69,8 @@ Why use link function in Angular directives?
 http://stackoverflow.com/questions/20018507/angularjs-what-is-the-need-of-the-directives-link-function-when-we-already-had
 	TL;DR - use 'controllers' when you want business logic
 			use 'link' when you want DOM manipulation
+
+Service vs Factory
+http://stackoverflow.com/questions/16596569/angularjs-what-is-a-factory
+	TL;DR - services share instances of objects
+			factories - share functions and objects
