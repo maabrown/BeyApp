@@ -117,10 +117,6 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	ADMIN ROUTES FOR USERS
 
 */
-	// in case someone presses the back button
-	router.get('/admin/login', function(req, res) {
-		res.sendFile(__dirname + '/views/signin.html');
-	})
 	
 
 	// Login Form - has Google and Local Options
