@@ -14,6 +14,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		// this is when the user decides local login, signup, or Google+
 		.when('/admin/login', {
 			templateUrl: '/../../views/signin.html',
+			// I don't think this route needs a controller since we aren't doing any logic on the page
 			controller: 'AdminController'
 		})
 
@@ -43,6 +44,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'SecondarySignupController'
 		})
 		
+		// when users want to signup
 		.when('/signup', {
 			templateUrl: '/../../views/signup.html',
 			controller: 'SignupController'

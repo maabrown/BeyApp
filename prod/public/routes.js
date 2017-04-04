@@ -102,12 +102,12 @@ module.exports = function(app, router, passport) {
 	// }) 
 
 
-	// Sign Up Form
-	router.get('/admin/signup', function(req, res) {
-		res.render(__dirname + '/views/signup.handlebars',
-			{ message : req.flash('signupMessage')} 
-			);
-	});
+	// // Sign Up Form
+	// router.get('/admin/signup', function(req, res) {
+	// 	res.render(__dirname + '/views/signup.handlebars',
+	// 		{ message : req.flash('signupMessage')} 
+	// 		);
+	// });
 
 	// Processing Form
 	// redirects from Passport docs
