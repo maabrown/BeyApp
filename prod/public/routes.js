@@ -149,6 +149,31 @@ module.exports = function(app, router, passport) {
 		successRedirect: '/profile',
 	}))
 
+	// using a Custom Callback from PassportJS
+	router.post('/admin/auth/local-login', function(req,res,next) {
+
+		passport.authenticate('local-login', function(err, user, info) {
+
+			// this is checking what is returned from the passport strategy in passport.js
+			if (err) { return res.json(err) }
+
+			if (user.error) {
+				// by setting the error property on the res object, our HttpFactory will catch it
+				// and use Growl to show it
+				return res.json( {error : user.error})
+			}
+
+			// logIn is from PassportJS
+			req.logIn(user, function(err) {
+				if (err) {
+					return res.json(err);
+				}
+				return res.json( { redirect: '/profile'})
+			})
+		})(req,res);
+
+	})
+
 	// GOOGLE AUTHENTICATION
 	// scope is provided by Google
 	// we determine what scope and service we want from Google - here we only want
