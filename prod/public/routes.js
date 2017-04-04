@@ -96,10 +96,10 @@ module.exports = function(app, router, passport) {
 	
 
 	// Login Form - has Google and Local Options
-	router.get('/admin/auth/local-login', function(req, res) {
-		// loginMessage is inside passport.js
-		res.sendFile(__dirname + '/views/login.html');
-	}) 
+	// router.get('/admin/auth/local-login', function(req, res) {
+	// 	// loginMessage is inside passport.js
+	// 	res.sendFile(__dirname + '/views/login.html');
+	// }) 
 
 
 	// Sign Up Form
@@ -114,8 +114,6 @@ module.exports = function(app, router, passport) {
 	router.post('/admin/signup', passport.authenticate('local-signup', {
 		failureRedirect: '/admin/signup',
 		successRedirect: '/profile',
-		// allows for flash messages
-		failureFlash : true
 	}) )
 
 	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
@@ -149,7 +147,6 @@ module.exports = function(app, router, passport) {
 	router.post('/admin/auth/local-login', passport.authenticate('local-login', {
 		failureRedirect: '/admin/local-login',
 		successRedirect: '/profile',
-		failureFlash: true
 	}))
 
 	// GOOGLE AUTHENTICATION

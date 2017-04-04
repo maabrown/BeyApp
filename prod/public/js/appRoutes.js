@@ -11,9 +11,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'ResultController'
 		})
 
+		// this is when the user decides local login, signup, or Google+
 		.when('/admin/login', {
 			templateUrl: '/../../views/signin.html',
 			controller: 'AdminController'
+		})
+
+		// local login route
+		.when('/admin/auth/local-login', {
+			templateUrl: '/../../views/local-login-form.html',
+			controller: 'LoginFormController'
 		})
 
 		.when('/admin/confirm', {
