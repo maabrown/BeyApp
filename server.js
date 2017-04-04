@@ -41,9 +41,6 @@ mongooseDB.once('open', function () {
 // sets defaul engine to 'handlebars' which then triggers the app.engine line
 // app.set('view engine', 'handlebars');
 
-// sets directory for application's views
-app.set('views', process.cwd() + '/prod/public/views/');
-
 // sets the port value 
 // process.env is the environment variable which can change depending 
 // on if it is on Heroku or on your local computer
@@ -75,14 +72,8 @@ app.use(passport.initialize());
 // persistent login sessions
 app.use(passport.session());
 
-// uses flash-messages
-app.use(flash());
-
 //sets up 'router' Express router for this application
 var router = express.Router();
-
-//sets up 'adminRouter' Express router for this application
-var adminRouter = express.Router();
 
 // when you get / use the router registered above
 app.use('/', router);
@@ -107,7 +98,7 @@ app.use('/', router);
 // pass-in passport module to passport JS file
 require('./cred/passport')(passport);
 
-require('./prod/public/routes.js')(app, router, adminRouter, url, MongoClient, passport);
+require('./prod/public/routes.js')(app, router, passport);
 
 
 

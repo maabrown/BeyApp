@@ -1,4 +1,4 @@
-module.exports = function(app, router, adminRouter, url, MongoClient, passport) {
+module.exports = function(app, router, passport) {
 
 	//THINGS TO FIX - PULL MONGOCLIENT TO THIS OUTER SCOPE AND DEFINE IT SO I DONT 
 	// HAVE TO REUSE IT FOR EVERY ROUTE
@@ -82,30 +82,6 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 */
 
 
-	adminRouter.post('/', (req,res) => {
-		console.log('get adminRouter PUT method');
-		var lyrics = req.body.lyrics;
-		// var findRegEx = /[A-Z]+/g;
-		// var replaceRegEx = "\n$&";
-		// var formattedLyrics = lyrics.replace(findRegEx, replaceRegEx);
-		console.log(req.query.songTitle);
-		console.log(req.query.albumTitle);
-		console.log(req.query.songLyrics);
-		console.log(req.query.featArtist);
-		db.collection('lyrics').insertOne( 
-			{
-			"title" : req.query.songTitle,
-			"album" : req.query.albumTitle,
-			"featArtist" : req.query.featArtist,
-			"lyrics" : req.query.songLyrics
-			},
-			(err, result) => {
-				if (err) return res.send(err)
-				res.send(result)
-			}
-		)
-	})
-
 	// FILL THIS OUT LATER
 	router.get('admin/deleteSong', (req,res) => {
 
@@ -144,9 +120,9 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 
 	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
 	// can pass an array of functions to a route that continue in a waterfall fashion
-	router.get('/profile', isLoggedIn, function (req, res) {
-		res.sendFile(__dirname + '/views/profile.html', { user: req.user })
-	})
+	// router.get('/profile', isLoggedIn, function (req, res) {
+	// 	res.sendFile(__dirname + '/views/profile.html', { user: req.user })
+	// })
 
 	router.get('logout', function(req,res) {
 		// req.logout() is provided by passport
@@ -216,12 +192,14 @@ module.exports = function(app, router, adminRouter, url, MongoClient, passport) 
 	router.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email']}))
 
 	router.get('/connect/google/callback', passport.authorize('google', {
-		successRedirect: '/profile',
+		successRedirect: '/',
 		failureRedirect: '/connect/google'
 	}))
 
 
 	router.get('/api/userData', isLoggedInAjax, function(req,res) {
+		console.log('getting userData');
+		console.log(req.user);
 		return res.json(req.user);
 	})
 

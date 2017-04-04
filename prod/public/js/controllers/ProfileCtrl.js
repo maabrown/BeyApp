@@ -1,8 +1,12 @@
-angular.module('ProfileCtrl', []).controller('ProfileController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
-
+angular.module('ProfileCtrl', []).controller('ProfileController', function($http, $scope, $routeParams) {
+	
 	// move this into a service
-	$http.get('/api/userData')
-		.success(function(data) {
-			$scope.user = data; // puts the user data on the Angular scope
-		})
-}])
+	$http({
+		method: 'GET',
+		url: '/api/userData'
+	}).then( function successCallback(response) {
+		$scope.user = response.data;
+	}, function errorCallback(err) {
+		throw err;
+	})
+})
