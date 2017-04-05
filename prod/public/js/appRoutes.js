@@ -24,16 +24,19 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'LoginFormController'
 		})
 
+		// confirmation that song lyrics were added to DB
 		.when('/admin/confirm', {
 			templateUrl: '/../../views/confirmation.html',
 			controller: 'AdminController'
 		})
 
+		// search functionality
 		.when('/search', {
 			templateUrl: '/../../views/search.html',
 			controller: 'ResultController'
 		})
 
+		// user profile information
 		.when('/profile', {
 			templateUrl: '/../../views/profile.html',
 			controller: 'ProfileController'
@@ -45,14 +48,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		
 		// when users want to signup
-		.when('/signup', {
+		.when('/admin/signup', {
 			templateUrl: '/../../views/signup.html',
 			controller: 'SignupController'
-		})
-
-		.when('/login', {
-			templateUrl: '/../../views/login.html',
-			controller: 'LoginController'
 		})
 
 		.otherwise( {

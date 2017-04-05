@@ -282,7 +282,7 @@ module.exports = function(app, router, passport) {
 		user.local.email = undefined;
 		user.local.password = undefined;
 		user.save(function(err) {
-			res.direct('/profile');
+			res.redirect('/profile');
 		});
 	});
 
