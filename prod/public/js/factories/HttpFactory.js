@@ -10,8 +10,6 @@ angular.module('HttpFactory', [])
 		response: function(response) {
 			if (typeof response.data === 'object') {
 				console.log('interceptor is working');
-				console.log(response);
-				console.log(response.data);
 				// redirect property is given by the isLoggedInAjax method in routes.js
 				if (response.data.redirect) {
 					// use Angular to change the URL

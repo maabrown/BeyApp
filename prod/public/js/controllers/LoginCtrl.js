@@ -11,7 +11,7 @@ angular.module('LoginCtrl', []).controller('LoginFormController', function($http
 			}
 		})
 		.then( function successCallback(response) {
-			console.log(response);
+			
 		}, function errorCallback(err) {
 			console.log(err);
 		})

@@ -111,10 +111,27 @@ module.exports = function(app, router, passport) {
 
 	// Processing Form
 	// redirects from Passport docs
-	router.post('/admin/signup', passport.authenticate('local-signup', {
-		failureRedirect: '/admin/signup',
-		successRedirect: '/profile',
-	}) )
+	// router.post('/admin/signup', passport.authenticate('local-signup', {
+	// 	failureRedirect: '/admin/signup',
+	// 	successRedirect: '/profile',
+	// }) )
+
+	router.post('/admin/signup', function(req,res,next) {
+		
+		passport.authenticate('local-signup', function(err, user, info) {
+			if (err) { return err };
+
+			if (!user) {
+				return res.json( { error : user.error })
+			}
+
+			req.logIn(user, function(err) {
+				if (err) { return res.json(err) };
+
+				return res.json( { redirect: '/profile' });
+			})
+		})(req,res);
+	});
 
 	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
 	// can pass an array of functions to a route that continue in a waterfall fashion
