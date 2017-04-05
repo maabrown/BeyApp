@@ -132,9 +132,9 @@ module.exports = function(app, router, passport) {
 
 
 	// QUESTION - IS THIS ROUTE STILL NECESSARY? shouldn't i just redirect them to '/auth/google'
-	router.get('/googleLogin', (req,res) => {
-		res.render(__dirname + '/views/google-auth.handlebars')
-	})
+	// router.get('/googleLogin', (req,res) => {
+	// 	res.render(__dirname + '/views/google-auth.handlebars')
+	// })
 
 
 /*
@@ -144,10 +144,10 @@ module.exports = function(app, router, passport) {
 */
 	// LOCAL AUTHENTICATION
 	// login form submission
-	router.post('/admin/auth/local-login', passport.authenticate('local-login', {
-		failureRedirect: '/admin/local-login',
-		successRedirect: '/profile',
-	}))
+	// router.post('/admin/auth/local-login', passport.authenticate('local-login', {
+	// 	failureRedirect: '/admin/local-login',
+	// 	successRedirect: '/profile',
+	// }))
 
 	// using a Custom Callback from PassportJS
 	router.post('/admin/auth/local-login', function(req,res,next) {
@@ -157,8 +157,11 @@ module.exports = function(app, router, passport) {
 			// this is checking what is returned from the passport strategy in passport.js
 			if (err) { return res.json(err) }
 
+			// user.error was set via the done() second parameter
 			if (user.error) {
-				// by setting the error property on the res object, our HttpFactory will catch it
+
+				console.log(user);
+				// using res.json() we then set an error property on response.data which our HttpFactory will catch
 				// and use Growl to show it
 				return res.json( {error : user.error})
 			}

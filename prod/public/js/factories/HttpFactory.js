@@ -9,7 +9,9 @@ angular.module('HttpFactory', [])
 		// is called upon receiving a reponse
 		response: function(response) {
 			if (typeof response.data === 'object') {
-
+				console.log('interceptor is working');
+				console.log(response);
+				console.log(response.data);
 				// redirect property is given by the isLoggedInAjax method in routes.js
 				if (response.data.redirect) {
 					// use Angular to change the URL
@@ -21,7 +23,8 @@ angular.module('HttpFactory', [])
 				}
 				else if (response.data.error) {
 					// use growl to display message
-					growl.addErrorMessage(response.data.error);
+					console.log('this is data.error ' + response.data.error);
+					growl.error(response.data.error);
 				}
 			}
 			return response || $q.when(response);
