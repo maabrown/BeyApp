@@ -221,15 +221,14 @@ module.exports = function(app, router, passport) {
 
 */
 
-	//LOCAL AUTHORIZATION AND CONNECTION
-	router.get('/connect/local', function(req,res) {
-		res.render(__dirname + '/connect-local.handlebars', { message : req.flash('loginMessage') })
-	})
+	// //LOCAL AUTHORIZATION AND CONNECTION
+	// router.get('/connect/local', function(req,res) {
+	// 	res.render(__dirname + '/connect-local.handlebars', { message : req.flash('loginMessage') })
+	// })
 
 	router.post('/connect/local', passport.authenticate('local-signup', {
 		successRedirect: '/profile',
 		failureRedirect: '/connect/local',
-		failureFlash: true
 	}))
 
 	// GOOGLE AUTHORIZATION AND CONNECTION
