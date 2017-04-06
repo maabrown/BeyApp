@@ -1,8 +1,20 @@
-angular.module('SecondarySignupCtrl', []).controller('SecondarySignupController', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+angular.module('SecondarySignupCtrl', []).controller('SecondarySignupController', function($http, $scope, $routeParams) {
 
-	// put into a service
-	$http.get('/api/userData')
-		.success(function(data) {
-			$scope.user = data;
+	$scope.submission = function(user) {
+
+		$http({
+			method: 'POST',
+			url: '/connect/local',
+			data: {
+				email : user.email,
+				password : user.password
+			}
 		})
-}])
+		.then( function successCallback(res) {
+
+		}, function errCallback(err) {
+			console.log(error)
+		})
+	}
+
+})

@@ -122,12 +122,13 @@ module.exports = function(app, router, passport) {
 			if (err) { return err };
 
 			if (!user) {
+				console.log( '!user');
 				return res.json( { error : user.error })
 			}
 
 			req.logIn(user, function(err) {
 				if (err) { return res.json(err) };
-
+				console.log('logIn working');
 				return res.json( { redirect: '/profile' });
 			})
 		})(req,res);
@@ -139,12 +140,13 @@ module.exports = function(app, router, passport) {
 	// 	res.sendFile(__dirname + '/views/profile.html', { user: req.user })
 	// })
 
-	router.get('logout', function(req,res) {
+	router.post('/logout', function(req,res) {
 		// req.logout() is provided by passport
 		// req.logout ends a session of a user by removing the req.user property
 		req.logout();
 		// redirects them to homepage
-		res.redirect('/');
+		console.log('is hitting the route');
+		return res.json( { redirect: '/' });
 	})
 
 
@@ -188,7 +190,7 @@ module.exports = function(app, router, passport) {
 				if (err) {
 					return res.json(err);
 				}
-				return res.json( { redirect: '/profile'})
+				return res.json( { redirect: '/profile'} )
 			})
 		})(req,res);
 

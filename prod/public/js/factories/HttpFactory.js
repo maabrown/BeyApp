@@ -13,7 +13,7 @@ angular.module('HttpFactory', [])
 				// redirect property is given by the isLoggedInAjax method in routes.js
 				if (response.data.redirect) {
 					// use Angular to change the URL
-					$location.path(reponse.data.redirect)
+					$location.path(response.data.redirect)
 
 					// use OR operator, returns empty object or wraps reponse in a $q Promise object
 					// when would you get $q.when?

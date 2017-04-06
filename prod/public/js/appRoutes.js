@@ -50,7 +50,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		// when users want to signup
 		.when('/admin/signup', {
 			templateUrl: '/../../views/signup.html',
-			controller: 'SignupController'
+			controller: 'SignUpFormController'
 		})
 
 		.otherwise( {
