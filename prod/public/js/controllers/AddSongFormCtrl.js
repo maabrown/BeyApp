@@ -1,4 +1,4 @@
-angular.module('AdminCtrl', []).controller('AdminController', function($scope, $http, $location, AdminMethods) {
+angular.module('AddSongFormCtrl', []).controller('AddSongFormController', function($scope, $http, $location, AdminMethods) {
 
 	// $scope will allow us to get info from the view and use it here in our controller
 	// you can call this anything you want other than formData - just has to match your

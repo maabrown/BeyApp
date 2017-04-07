@@ -9,8 +9,6 @@ const exphbs = require('express-handlebars');
 const highlighter = require('keyword-highlighter');
 // passport for authentication
 var passport = require('passport');
-// passing sesion flashdata messages
-var flash = require('connect-flash');
 // request logger middleware
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -105,5 +103,3 @@ require('./prod/public/routes.js')(app, router, passport);
 // start app after getting the 'port' variable
 app.listen(app.get('port'));
 console.log('Magic at ' + app.get('port'));
-
-

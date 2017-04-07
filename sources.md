@@ -74,3 +74,7 @@ Service vs Factory
 http://stackoverflow.com/questions/16596569/angularjs-what-is-a-factory
 	TL;DR - services share instances of objects
 			factories - share functions and objects
+
+Mixing Mongoose with MongoDB for $text and index
+http://stackoverflow.com/questions/39177201/not-able-to-create-index-using-mongoose
+http://stackoverflow.com/questions/24714166/full-text-search-with-weight-in-mongoose

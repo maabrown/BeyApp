@@ -53,6 +53,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'SignUpFormController'
 		})
 
+		// adding songs to DB
+		.when('/admin/addSongs', {
+			templateUrl: '/../../views/add-songs.html',
+			controller: 'AddSongFormController'
+		})
+
 		.otherwise( {
 			redirectTo: '/'
 		})
