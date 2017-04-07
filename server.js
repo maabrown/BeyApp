@@ -18,9 +18,11 @@ const path = require('path');
 // signs into the database
 var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 
+var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
+
 var db;
 
-mongoose.connect(url);
+mongoose.connect(url2);
 var mongooseDB = mongoose.connection;
 mongooseDB.once('open', function () {
 	console.log('opened');
@@ -49,7 +51,7 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 // setting session secret - used to create the hash for cryptography
-app.use(session({ secret: cred.secret}))
+app.use(session({ secret: process.env.SECRET }))
 
 app.use(passport.initialize());
 
