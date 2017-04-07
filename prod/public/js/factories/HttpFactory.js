@@ -9,7 +9,6 @@ angular.module('HttpFactory', [])
 		// is called upon receiving a reponse
 		response: function(response) {
 			if (typeof response.data === 'object') {
-				console.log('interceptor is working');
 
 				// redirect property is given by the isLoggedInAjax method and API calls via res.json in routes.js
 				if (response.data.redirect) {

@@ -11,7 +11,7 @@ angular.module('SecondarySignupCtrl', []).controller('SecondarySignupController'
 			}
 		})
 		.then( function successCallback(res) {
-			console.log('local was connected');
+
 		}, function errCallback(err) {
 			console.log(err);
 		})

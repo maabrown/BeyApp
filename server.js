@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const cred = require('./cred/credentials.js');
-const exphbs = require('express-handlebars');
 // delete highlighter
 const highlighter = require('keyword-highlighter');
 // passport for authentication
@@ -27,17 +26,6 @@ mongooseDB.once('open', function () {
 	console.log('opened');
 
 })
-
-
-
-// registers filename 'handlebars', and calls the exphb variable from above
-// and passes in the parmeters when it get a file with the extention
-// app.engine('handlebars', exphbs({
-// 	layoutsDir: './prod/public/views'
-// }));
-
-// sets defaul engine to 'handlebars' which then triggers the app.engine line
-// app.set('view engine', 'handlebars');
 
 // sets the port value 
 // process.env is the environment variable which can change depending 
@@ -76,29 +64,10 @@ var router = express.Router();
 // when you get / use the router registered above
 app.use('/', router);
 
-// when you get /admin use the AdminRouter registered above
-// app.use('/admin', adminRouter);
-
-
-// MongoDB connection doesn't have to hold the routers
-// MongoClient.connect(url, (err,database) => {
-	
-// 	if (err) return console.log(err);
-// 	db = database;
-
-// 	db.collection('lyrics').createIndex( 
-// 		{
-// 			"lyrics" : "text",
-// 		}
-// 	);
-// });
-
 // pass-in passport module to passport JS file
 require('./cred/passport')(passport);
 
 require('./prod/public/routes.js')(app, router, passport);
-
-
 
 // start app after getting the 'port' variable
 app.listen(app.get('port'));

@@ -9,8 +9,6 @@ angular.module('AddSongFormCtrl', []).controller('AddSongFormController', functi
 		AdminMethods.postLyrics(formData)
 
 			.then( function(response) {
-				console.log('hitting then');
-				console.log(response);
 				$scope.$parent.songTitle = response.data.addedSongTitle;
 				$scope.$parent.albumTitle = response.data.addedSongAlbum;
 				// $location.path('/admin/confirm')

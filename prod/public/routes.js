@@ -2,9 +2,6 @@ const Song = require('../../app/models/songs.js');
 
 module.exports = function(app, router, passport) {
 
-	//THINGS TO FIX - PULL MONGOCLIENT TO THIS OUTER SCOPE AND DEFINE IT SO I DONT 
-	// HAVE TO REUSE IT FOR EVERY ROUTE
-
 	// DELETE THIS CODE - just extra middleware
 	router.use( (req,res,next) => {
 		next();
@@ -16,70 +13,8 @@ module.exports = function(app, router, passport) {
 
 */
 
-	// WHEN USER ENTERS A QUERY
-	// router.get('/getLyrics', (req,res) => {
-		
-	// 	MongoClient.connect(url, (err, database) =>  {
-			
-	// 		if (err) return console.log(error)
-
-	// 		var db = database
-
-	// 		db.collection('lyrics').createIndex( 
-	// 			{
-	// 				"lyrics" : "text",
-	// 			}
-	// 		);
-
-
-	// 	db.collection('lyrics')
-	// 		.find(
-	// 			{ $text :
-	// 				{ $search : req.query.searchTerm}	
-	// 			},
-	// 			{ "title" : 1, "album" : 1, "lyrics" : 1 }
-	// 		)
-	// 		.toArray(
-	// 			(err, result) => {
-	// 				if (err) return console.log(err);
-	// 				console.log(result);
-	// 				console.log("search Term: " + req.query.searchTerm);
-
-	// 				// figuring out how many times the term is in the lyrics
-	// 				// using ES6 for this function
-	// 				// result is an array so using forEach to iterate
-	// 				// using RegEx (object construction) to search for the term in the result
-	// 				// igm are RegEx flags, i - ignore case, g - global match (find all cases), m - multiline
-	// 				const regExSearchTerm = new RegExp(req.query.searchTerm, 'igm');
-					
-	// 				// put this outside of scope of function so it can be continuously updated
-	// 				// as forEach is run
-	// 				var totalMatches = 0;
-
-	// 				result.forEach( (individResultObj) => {
-
-	// 					// individResultObj['lyrics'] - using bracket notation to get value in object
-	// 					// using match() String function to find matches using RegEx: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match
-	// 					// match() returns an array of each match
-	// 					var matchesArray = individResultObj['lyrics'].match(regExSearchTerm);
-						
-	// 					// setting a new property on each result that is how many times the word is mentioned in the lyrics
-	// 					// using the length property to see how many times it is mentioned
-	// 					individResultObj['matches'] = matchesArray.length;
-
-	// 					//
-	// 					totalMatches = totalMatches + individResultObj['matches'];
-	// 				})
-	// 				result.push({ 'totalMatches' : totalMatches});
-	// 				return res.json(result);
-	// 			}
-	// 		)
-	// 	})
-	// })
-
-
 	router.get('/getLyrics', (req,res) => {
-		console.log(req.query.searchTerm);
+		
 		Song.find( {
 			$text : {
 				$search : req.query.searchTerm
@@ -117,13 +52,15 @@ module.exports = function(app, router, passport) {
 			return res.json(docs);
 		})
 	})
+
+
 /*
 
 	ADMIN API ROUTES
 
 */
 	router.post('/admin/addSong', isLoggedInAjax, (req,res, next) => {
-		console.log('is getting to post');
+		
 		Song.create( {
 			title: req.query.songTitle,
 			album: req.query.albumTitle,
@@ -132,7 +69,7 @@ module.exports = function(app, router, passport) {
 		}, function(err, addedDocument) {
 			if (err) { console.log(err)}
 			if (addedDocument) {
-				console.log(addedDocument);
+				
 				return res.json({ 
 					redirect: '/admin/confirm', 
 					addedSongTitle: req.query.songTitle,
@@ -154,28 +91,6 @@ module.exports = function(app, router, passport) {
 	ADMIN ROUTES FOR USERS
 
 */
-	
-
-	// Login Form - has Google and Local Options
-	// router.get('/admin/auth/local-login', function(req, res) {
-	// 	// loginMessage is inside passport.js
-	// 	res.sendFile(__dirname + '/views/login.html');
-	// }) 
-
-
-	// // Sign Up Form
-	// router.get('/admin/signup', function(req, res) {
-	// 	res.render(__dirname + '/views/signup.handlebars',
-	// 		{ message : req.flash('signupMessage')} 
-	// 		);
-	// });
-
-	// Processing Form
-	// redirects from Passport docs
-	// router.post('/admin/signup', passport.authenticate('local-signup', {
-	// 	failureRedirect: '/admin/signup',
-	// 	successRedirect: '/profile',
-	// }) )
 
 	router.post('/admin/signup', function(req,res,next) {
 		
@@ -189,45 +104,26 @@ module.exports = function(app, router, passport) {
 
 			req.logIn(user, function(err) {
 				if (err) { return res.json(err) };
-				console.log('logIn working');
+				
 				return res.json( { redirect: '/profile' });
 			})
 		})(req,res);
 	});
-
-	// see profile - use express router to use function isLoggedIn https://expressjs.com/en/guide/routing.html
-	// can pass an array of functions to a route that continue in a waterfall fashion
-	// router.get('/profile', isLoggedIn, function (req, res) {
-	// 	res.sendFile(__dirname + '/views/profile.html', { user: req.user })
-	// })
 
 	router.post('/logout', function(req,res) {
 		// req.logout() is provided by passport
 		// req.logout ends a session of a user by removing the req.user property
 		req.logout();
 		// redirects them to homepage
-		console.log('is hitting the route');
+		
 		return res.json( { redirect: '/' });
 	})
-
-
-	// QUESTION - IS THIS ROUTE STILL NECESSARY? shouldn't i just redirect them to '/auth/google'
-	// router.get('/googleLogin', (req,res) => {
-	// 	res.render(__dirname + '/views/google-auth.handlebars')
-	// })
-
 
 /*
 
 	ADMIN AUTHENTICATION ROUTES
 
 */
-	// LOCAL AUTHENTICATION
-	// login form submission
-	// router.post('/admin/auth/local-login', passport.authenticate('local-login', {
-	// 	failureRedirect: '/admin/local-login',
-	// 	successRedirect: '/profile',
-	// }))
 
 	// using a Custom Callback from PassportJS
 	router.post('/admin/auth/local-login', function(req,res,next) {
@@ -240,7 +136,7 @@ module.exports = function(app, router, passport) {
 			// user.error was set via the done() second parameter
 			if (user.error) {
 
-				console.log(user);
+				
 				// using res.json() we then set an error property on response.data which our HttpFactory will catch
 				// and use Growl to show it
 				return res.json( {error : user.error})
@@ -316,8 +212,6 @@ module.exports = function(app, router, passport) {
 
 
 	router.get('/api/userData', isLoggedInAjax, function(req,res) {
-		console.log('getting userData');
-		console.log(req.user);
 		return res.json(req.user);
 	})
 

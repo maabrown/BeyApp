@@ -11,7 +11,7 @@ angular.module('SignUpFormCtrl', []).controller('SignUpFormController', function
 			}
 		})
 		.then( function successCallback(response) {
-			console.log(response);
+
 		}, function errorCallback(err) {
 			console.log(err)
 		})

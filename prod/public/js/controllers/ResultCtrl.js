@@ -5,7 +5,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 		var highlightOptions = {
 			"exclude" : ["#songTitleDiv"]
 		};
-		console.log(context);
+
 		var instance = new Mark(context);
 		instance.mark($scope.$parent.searchTerm, highlightOptions);
 	}
@@ -31,8 +31,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 				
 				// data validation to make sure that the information being returned is an object
 				if (typeof response === "object") {
-					console.log(response);
-					console.log(response.data)
+
 
 					// splice returns an array of the item you removed
 					var totalMatches = response['data'].splice(-1, 1);
@@ -52,9 +51,6 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					$scope.$parent.lemonadeArray = [];
 
 					response.data.forEach( function(element, index, array) {
-						
-
-						console.log(element.album);
 
 						if (element.album === "Dangerously in Love") {
 							$scope.$parentdangerouslyArray.push(element);
@@ -89,8 +85,6 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					$scope.$parent.totalMatches = totalMatches[0]['totalMatches'];
 
 					$scope.totalMatches = totalMatches[0]['totalMatches'];
-					console.log($scope.$parent)
-					console.log($scope.$parent.lemonadeArray);
 
 					// this redirects the app without reloading the page
 					$location.path('/results');

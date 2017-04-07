@@ -9,7 +9,7 @@ angular.module('AdminService', []).factory('AdminMethods', function($http, $q, $
 
 	return {
 		postLyrics: function(formData) {
-			console.log(formData);
+
 			// formData.songLyrics = formData.songLyrics.replace(/(\\r|\\n)/g, "<br>");
 			
 			return $http({
@@ -22,11 +22,11 @@ angular.module('AdminService', []).factory('AdminMethods', function($http, $q, $
 				}
 			})
 				.then(function(response) {
-					console.log('post worked');
+					
 					return response;
 				})
 				.catch( function(err) {
-					console.log(err);
+					
 					// returns the err but could be moved along a chain if I
 					// want to clean up errors later
 					return $q.reject(err);

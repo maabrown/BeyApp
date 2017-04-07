@@ -10,7 +10,7 @@ angular.module('ResultService', []).factory('ResultCall', function($http, $q, $l
 
 	return {
 		getLyrics: function(searchTerm) {
-			console.log('this is the search ' + searchTerm);
+			
 			return $http({
 						method: 'GET',
 						url: '/getLyrics',
@@ -19,7 +19,7 @@ angular.module('ResultService', []).factory('ResultCall', function($http, $q, $l
 					})
 						// if successful return the response
 						.then(function(response) {
-							console.log('this is the response ' + response);
+							
 							return response
 						})
 						// if not successful return the error

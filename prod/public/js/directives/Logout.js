@@ -9,7 +9,7 @@ angular.module('LogoutDirective', []).directive('logout', function($http) {
 					method: 'POST',
 					url: '/logout'
 				}).then( function successfullCallback(res) {
-					console.log('you have been logged out');
+					
 				}, function errorCallback(err) {
 
 				})
