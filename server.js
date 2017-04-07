@@ -16,11 +16,11 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // signs into the database
-var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
+// var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 
 var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
 
-var db;
+// var db;
 
 mongoose.connect(url2);
 var mongooseDB = mongoose.connection;
@@ -65,7 +65,7 @@ var router = express.Router();
 app.use('/', router);
 
 // pass-in passport module to passport JS file
-require('./cred/passport')(passport);
+require('./app/passport.js')(passport);
 
 require('./prod/public/routes.js')(app, router, passport);
 
