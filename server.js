@@ -48,10 +48,8 @@ app.use(cookieParser());
 // log every request to the console
 app.use(morgan('dev'));
 
-
-// Moved all my session information and flash before I defined my routers
 // setting session secret - used to create the hash for cryptography
-app.use(session({ secret: 'thisIsRealLife'}))
+app.use(session({ secret: cred.secret}))
 
 app.use(passport.initialize());
 
