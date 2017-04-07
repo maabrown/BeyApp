@@ -14,7 +14,7 @@ angular.module('AdminService', []).factory('AdminMethods', function($http, $q, $
 			
 			return $http({
 				method: 'POST',
-				url: 'admin/addSong',
+				url: '/admin/addSong',
 				params: { "songTitle" : formData.songTitle,
 						 "albumTitle" : formData.albumTitle,
 						 "songLyrics" : formData.songLyrics,

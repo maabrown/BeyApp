@@ -15,7 +15,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/admin/login', {
 			templateUrl: '/../../views/signin.html',
 			// I don't think this route needs a controller since we aren't doing any logic on the page
-			controller: 'AdminController'
+			controller: 'StarterController'
 		})
 
 		// local login route

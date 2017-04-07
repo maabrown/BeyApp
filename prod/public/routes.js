@@ -122,10 +122,25 @@ module.exports = function(app, router, passport) {
 	ADMIN API ROUTES
 
 */
+	router.post('/admin/addSong', isLoggedInAjax, (req,res, next) => {
+		console.log('is getting to post');
+		Song.create( {
+			title: req.query.songTitle,
+			album: req.query.albumTitle,
+			featArtist: req.query.featArtist,
+			lyrics: req.query.songLyrics
+		}, function(err, addedDocument) {
+			if (err) { console.log(err)}
+			if (addedDocument) {
+				console.log(addedDocument);
+				return res.json({ redirect: '/admin/confirm'})
+			}
+		})
+	})
 
 
 	// FILL THIS OUT LATER
-	router.get('admin/deleteSong', (req,res) => {
+	router.get('/admin/deleteSong', isLoggedInAjax, (req,res, next) => {
 
 	});
 
