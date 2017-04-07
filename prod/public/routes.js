@@ -226,10 +226,24 @@ module.exports = function(app, router, passport) {
 	// 	res.render(__dirname + '/connect-local.handlebars', { message : req.flash('loginMessage') })
 	// })
 
-	router.post('/connect/local', passport.authenticate('local-signup', {
-		successRedirect: '/profile',
-		failureRedirect: '/connect/local',
-	}))
+	router.post('/connect/local', function(req,res, next) {
+		passport.authenticate('local-signup', function(err, user, info) {
+			if (err) {
+				return res.json(err);
+			}
+
+			if (user.error) {
+				return res.json( { error: user.error} );
+			}
+
+			req.logIn(user, function(err) {
+				if (err) {
+					return res.json(err);
+				}
+				return res.json( { redirect: '/profile'})
+			}) 
+		})(req,res);
+	});
 
 	// GOOGLE AUTHORIZATION AND CONNECTION
 	router.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email']}))
@@ -290,6 +304,7 @@ module.exports = function(app, router, passport) {
 	router.get('/unlink/google', function(req, res) {
 		var user = req.user;
 		user.google.token = undefined;
+		user.google.name = undefined;
 		user.save(function(err) {
 			res.redirect('/profile');
 		});
