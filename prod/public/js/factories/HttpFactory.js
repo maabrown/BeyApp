@@ -10,14 +10,15 @@ angular.module('HttpFactory', [])
 		response: function(response) {
 			if (typeof response.data === 'object') {
 				console.log('interceptor is working');
-				// redirect property is given by the isLoggedInAjax method in routes.js
+
+				// redirect property is given by the isLoggedInAjax method and API calls via res.json in routes.js
 				if (response.data.redirect) {
 					// use Angular to change the URL
 					$location.path(response.data.redirect)
 
-					// use OR operator, returns empty object or wraps reponse in a $q Promise object
+					// use OR operator, returns empty object or wraps response in a $q Promise object
 					// when would you get $q.when?
-					return {} || $q.when(response);
+					return response || $q.when(response);
 				}
 				else if (response.data.error) {
 					// use growl to display message

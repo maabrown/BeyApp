@@ -133,7 +133,11 @@ module.exports = function(app, router, passport) {
 			if (err) { console.log(err)}
 			if (addedDocument) {
 				console.log(addedDocument);
-				return res.json({ redirect: '/admin/confirm'})
+				return res.json({ 
+					redirect: '/admin/confirm', 
+					addedSongTitle: req.query.songTitle,
+					addedSongAlbum: req.query.albumTitle
+				})
 			}
 		})
 	})

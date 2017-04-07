@@ -27,7 +27,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		// confirmation that song lyrics were added to DB
 		.when('/admin/confirm', {
 			templateUrl: '/../../views/confirmation.html',
-			controller: 'AdminController'
+			controller: 'AddSongFormController'
 		})
 
 		// search functionality
