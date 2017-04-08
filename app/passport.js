@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./app/models/user');
+const User = require('./models/user');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // loads in Google+ authentication
