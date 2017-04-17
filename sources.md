@@ -87,3 +87,9 @@ Callbacks in Gulp with Promises
 http://stackoverflow.com/questions/32770896/nodes-del-command-callback-not-firing
 	- use return the promises as a callback rather than using 'done' (aka use return keword)
 
+Gulp Errors
+https://medium.com/@boriscoder/catching-errors-on-gulp-js-4682eee2669f
+	- Gulp stream stops once there's an error
+	- use .on('error', cb) setup
+	- use function(done) { done(error)} to throw error and continue stream
+	- 

@@ -36,6 +36,7 @@ gulp.task('sass', ['clean-styles'], function() {
 	return gulp
 		.src(gulpConfig.allSass)
 		.pipe($.sass())
+		.on('error', errorLogger)
 		.pipe($.autoprefixer( { browsers: ['last 2 versions', '> 5%']}))
 		.pipe(gulp.dest(gulpConfig.temp))
 })
@@ -54,4 +55,11 @@ gulp.task('sass-watcher', function() {
 function clean(path) {
 	console.log('Cleaning')
 	return del(path);
+}
+
+function errorLogger(error) {
+	console.log('** Start of Error **')
+	console.log(error);
+	console.log('** End of Error **')
+	this.emit('end');
 }
