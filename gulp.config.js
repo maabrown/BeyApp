@@ -11,7 +11,7 @@ module.exports = function() {
 		],
 
 		// Temp 
-		temp: './dev',
+		temp: './.tmp/',
 
 		// Sass file
 		allSass: './styles.scss'

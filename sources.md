@@ -78,3 +78,12 @@ http://stackoverflow.com/questions/16596569/angularjs-what-is-a-factory
 Mixing Mongoose with MongoDB for $text and index
 http://stackoverflow.com/questions/39177201/not-able-to-create-index-using-mongoose
 http://stackoverflow.com/questions/24714166/full-text-search-with-weight-in-mongoose
+
+Gulp 'done'
+http://stackoverflow.com/questions/29694425/what-does-gulp-done-method-do
+	- use done as a callback to make gulp tasks run in order
+
+Callbacks in Gulp with Promises
+http://stackoverflow.com/questions/32770896/nodes-del-command-callback-not-firing
+	- use return the promises as a callback rather than using 'done' (aka use return keword)
+

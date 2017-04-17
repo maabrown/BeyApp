@@ -1,0 +1,14 @@
+{
+  "name": "beyapp",
+  "description": "Beyonce Lyric application",
+  "main": "server.js",
+  "license": "ISC",
+  "homepage": "https://github.com/maabrown/BeyApp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

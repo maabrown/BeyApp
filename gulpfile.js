@@ -6,6 +6,8 @@ const args = require('yargs').argv;
 // const gulpPrint = require('gulp-print');
 // const gulpIf = require('gulp-if');
 const gulpConfig = require('./gulp.config')();
+const del = require('del');
+const path = require('path');
 
 const $ = require('gulp-load-plugins')({lazy: true});
 
@@ -28,12 +30,28 @@ gulp.task('vet', function() {
 })
 
 
-gulp.task('sass', function() {
+gulp.task('sass', ['clean-styles'], function() {
 	console.log('Going through Sass');
 
 	return gulp
 		.src(gulpConfig.allSass)
 		.pipe($.sass())
-		.pipe($.autoprefixer( { browsers: ['last 2 versions', ' > 5%']}))
+		.pipe($.autoprefixer( { browsers: ['last 2 versions', '> 5%']}))
 		.pipe(gulp.dest(gulpConfig.temp))
 })
+
+// use callback
+gulp.task('clean-styles', function() {
+	var files = gulpConfig.temp + '**/*.css';
+	$.util.log(files);
+	return clean(files);
+})
+
+gulp.task('sass-watcher', function() {
+	gulp.watch(gulpConfig.allSass, ['sass']);
+})
+
+function clean(path) {
+	console.log('Cleaning')
+	return del(path);
+}
