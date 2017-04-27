@@ -89,7 +89,8 @@ http://stackoverflow.com/questions/32770896/nodes-del-command-callback-not-firin
 
 Gulp Errors
 https://medium.com/@boriscoder/catching-errors-on-gulp-js-4682eee2669f
-	- Gulp stream stops once there's an error
+	- Node throws errors but doesn't give good explainations and from where. just says 'unhandled event error'
 	- use .on('error', cb) setup
-	- use function(done) { done(error)} to throw error and continue stream
-	- 
+	- use function(done) { done(error)} to throw error and show you were the error happens in stream
+
+1. You create your own .bowerrc file

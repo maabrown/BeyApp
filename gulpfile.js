@@ -35,8 +35,8 @@ gulp.task('sass', ['clean-styles'], function() {
 
 	return gulp
 		.src(gulpConfig.allSass)
+		.pipe($.plumber())
 		.pipe($.sass())
-		.on('error', errorLogger)
 		.pipe($.autoprefixer( { browsers: ['last 2 versions', '> 5%']}))
 		.pipe(gulp.dest(gulpConfig.temp))
 })
@@ -50,6 +50,17 @@ gulp.task('clean-styles', function() {
 
 gulp.task('sass-watcher', function() {
 	gulp.watch(gulpConfig.allSass, ['sass']);
+})
+
+gulp.task('wiredep', function() {
+	var options = gulpConfig.getWiredepDefaultOptions();
+	var wiredep = require('wiredep').stream;
+
+	return gulp
+		.src(gulpConfig.index)
+		.pipe(wiredep(options))
+		.pipe($.inject(gulp.src(gulpConfig.js)))
+		.pipe(gulp.dest(gulpConfig.codeBase))
 })
 
 function clean(path) {
