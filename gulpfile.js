@@ -10,6 +10,7 @@ const gulpConfig = require('./gulp.config')();
 const del = require('del');
 const path = require('path');
 var port = process.env.PORT || gulpConfig.defaultPort;
+const browserSync = require('browser-Sync');
 
 const $ = require('gulp-load-plugins')({lazy: true});
 
@@ -40,11 +41,12 @@ gulp.task('sass', ['clean-styles'], function() {
 		.pipe($.plumber())
 		.pipe($.sass())
 		.pipe($.autoprefixer( { browsers: ['last 2 versions', '> 5%']}))
-		.pipe(gulp.dest(gulpConfig.temp))
+		.pipe(gulp.dest(gulpConfig.codeBase))
 })
 
 // use callback
 gulp.task('clean-styles', function() {
+	$.util.log('cleaning files');
 	var files = gulpConfig.temp + '**/*.css';
 	$.util.log(files);
 	return clean(files);
@@ -78,7 +80,7 @@ gulp.task('inject', ['wiredep', 'sass'], function() {
 		// grab index.html - which has <-- inject -->
 		.src(gulpConfig.index)
 		// look up css based on gulpConfig object
-		.pipe($.inject(gulp.src(gulpConfig.allCSS)))
+		.pipe($.inject(gulp.src(gulpConfig.allCSS), {relative: true}))
 		// inject css into index.html
 		.pipe(gulp.dest(gulpConfig.codeBase))
 })
@@ -105,6 +107,7 @@ gulp.task('serve-dev', ['inject'], function() {
 		})
 		.on('start', function() {
 			$.util.log('nodemon has started')
+			startBrowserSync()
 		})
 		.on('crash', function() {
 			console.log('crashed')
@@ -124,4 +127,52 @@ function errorLogger(error) {
 	console.log(error);
 	console.log('** End of Error **')
 	this.emit('end');
+}
+
+function changeEvent(event) {
+
+}
+
+function startBrowserSync() {
+
+	// checks if browsersync is running
+	if (browserSync.active) {
+		return;
+	}
+
+	$.util.log(' using port ' + port);
+
+	gulp.watch([gulpConfig.allSass], ['sass']).on('change', function(event) {
+		$.util.log(event);
+	})
+
+	var options = {
+		// what are your proxying
+		proxy: 'localhost:' + port,
+		// where do you want browserSync to serve the files
+		port: 3000,
+
+		files: [gulpConfig.codeBase + '**/*', gulpConfig.temp + '**/*'],
+
+		// track parts of browser in multiple screens
+		ghostMode: {
+			clicks: true,
+			forms: true,
+			scroll: true
+		},
+		// once inject changes, injects just that file that changed rather than full reload
+		injectChanges: true,
+		// log file changegs
+		logFileChanges: true,
+
+		logLevel: 'debug',
+
+		logPrefix: 'gulp-patterns',
+
+		notify: true,
+
+		reloadDelay: 1000
+	}
+
+	browserSync(options);
 }

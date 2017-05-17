@@ -2,7 +2,7 @@ module.exports = function() {
 
 	var codeBase = './prod/public/';
 	var codeBaseApp = codeBase + 'js/';
-	var temp = '../.tmp/';
+	var temp = './.tmp/';
 
 	var config = {
 
@@ -15,7 +15,7 @@ module.exports = function() {
 		],
 
 		allCSS: [ 
-			temp + 'styles.css',
+			codeBase + 'styles.css',
 			codeBase + 'growl.css'
 		],
 
@@ -47,7 +47,7 @@ module.exports = function() {
 		],
 
 		// Sass file
-		allSass: './styles.scss',
+		allSass: 'styles.scss',
 
 		defaultPort: 7203,
 		// where the app is running from
