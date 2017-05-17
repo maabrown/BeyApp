@@ -40,7 +40,7 @@ gulp.task('sass', ['clean-styles'], function() {
 		.src(gulpConfig.allSass)
 		.pipe($.plumber())
 		.pipe($.sass())
-		.pipe($.autoprefixer( { browsers: ['last 2 versions', '> 5%']}))
+		.pipe($.autoprefixer( { browsers: ['last 2 versions']}))
 		.pipe(gulp.dest(gulpConfig.codeBase))
 })
 

@@ -1,7 +1,101 @@
-#class {
-	background-color: yellow
+body, html {
+	height: 100%;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
 }
 
-.art {
-	color: pink;
+.title {
+	font-family: 'Francois One', sans-serif;
+}
+
+// sets Queens English logo on desktop
+#header > div > img {
+	width: 13em;
+}
+
+// horizontal line
+hr {
+	margin-top: .5em;
+	margin-left: .5em;
+	margin-right: .5em;
+}
+
+// logo in header
+#header > div {
+	margin-left: .4em;
+}
+
+// description text
+h3.description {
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	
+	#header > div > img.logo {
+		width: 8em;
+		margin-top: .5em;
+	}
+
+	#header > div {
+		text-align: center;
+	}
+
+	.title-row {
+		margin-top: 8em;
+		padding-left: .1em;
+		padding-right: .1em;
+	}
+
+	.title-opaque-box {
+	    background: rgba(255,255,255, .55);
+    	margin-left: .25em;
+   		margin-right: .25em;
+    	border-radius: 1em;
+	}
+
+	.description-row {
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.description {
+		font-size: .9em;
+	}
+
+	.text-line {
+	    background-color: transparent;
+	    color: #eeeeee;
+	    outline: none;
+	    outline-style: none;
+	    border-top: none;
+	    border-left: none;
+	    border-right: none;
+	    border-bottom: solid black .2em;
+	    padding: 3px 10px;
+	}
+
+	input[type="text"]::-webkit-input-placeholder {
+		color: black;
+	}
+	
+	input[type="text"]::-moz-placeholder {
+		color: black;
+	}
+
+	input[type="text"]:-ms-placeholder {
+		color: black;
+	}
+
+	input[type="text"]:-moz-placeholder {
+		color: black;
+	}
+
+	#searchLine {
+		margin-top: 1em;
+	}
+
+	button > img {
+		height: 2em;
+	}
 }

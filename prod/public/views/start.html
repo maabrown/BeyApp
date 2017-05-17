@@ -1,3 +1,55 @@
-<a ng-href="/search">Search View</a>
+<style type="text/css">
+	body {
+		background: url('../../images/queenPic.jpg');
 
-<a ng-href="/admin/login">Admin View</a>
+		height: 100%;
+
+		background-position: center center;
+		background-repeat:  no-repeat;
+		background-attachment: fixed;
+		background-size:  cover;
+	}
+</style>
+
+
+<div>
+	<div id="header">
+		<div>
+			<img src="../../../images/Logos/bey-logo-black-horizontal.png" class="logo">
+		</div>
+	</div>
+
+	<hr class="underline">
+
+	<div id="appText" class="container-fluid">
+		<div class="title-opaque-box">
+		
+		<div class="row justify-content-center title-row">
+			
+				<h1 class="title text-center" >Welcome to <br>The Queen's English!</h1>
+			
+		</div>
+		
+		<div class="row justify-content-center description-row">
+			<h3 class="description text-center">Because my Queen deserves more than my money, she also deserves an API and web app too!</h3>
+		</div>
+		
+		</div>
+
+		<div>
+			<div id="searchLine" class="text-center">
+					<form novalidate ng-submit="getInformation(resultPage.searchTerm)">
+						<input type="text" placeholder="Search Term" required ng-model="resultPage.searchTerm" class="text-line">
+						<button type="submit"><img src="../../images/Magnifying_glass_icon.png"></button>
+					</form>
+			</div>
+		</div>
+
+	</div>
+
+
+		
+	</div>
+
+	<a class="hidden-xs-down" ng-href="/admin/login">Admin View</a>
+</div>
