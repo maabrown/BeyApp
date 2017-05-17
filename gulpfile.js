@@ -53,20 +53,45 @@ gulp.task('sass-watcher', function() {
 	gulp.watch(gulpConfig.allSass, ['sass']);
 })
 
+// works for all files except our CSS
 gulp.task('wiredep', function() {
+	console.log('wiredep - inserting bower css js and app js');
 	var options = gulpConfig.getWiredepDefaultOptions();
+	// .stream is a config of wiredep that allows for it to be used in gulp stream below
 	var wiredep = require('wiredep').stream;
 
 	return gulp
+		// go get index.html file which has <-- bower:css -->
 		.src(gulpConfig.index)
+		// call wiredep, look up in bower.json - find run-time dependencies (aka not devDependencies)
 		.pipe(wiredep(options))
-		.pipe($.inject(gulp.src(gulpConfig.js)))
+		// call gulp-inject, look up files in gulpConfig.js
+		.pipe($.inject(gulp.src(gulpConfig.js), {relative: true}))
+		// gulp is going to inject both of these on the page - bower first and then gulp-inject
 		.pipe(gulp.dest(gulpConfig.codeBase))
+})
+
+// create inject because we don't want 'sass' task to run everytime we have a change in our bower.json
+// run wiredep and sass tasks first
+gulp.task('inject', ['wiredep', 'sass'], function() {
+	console.log()
+
+	return gulp
+		// grab index.html - which has <-- inject -->
+		.src(gulpConfig.index)
+		// look up css based on gulpConfig object
+		.pipe($.inject(gulp.src(gulpConfig.allCSS)))
+		// inject css into index.html
+		.pipe(gulp.dest(gulpConfig.codeBase))
+})
+
+gulp.task('serve-dev', ['inject'], function() {
+
 })
 
 function clean(path) {
 	console.log('Cleaning')
-	return del(path);
+	return del(path, { force: true});
 }
 
 function errorLogger(error) {

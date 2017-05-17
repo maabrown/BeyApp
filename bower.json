@@ -12,6 +12,9 @@
     "tests"
   ],
   "dependencies": {
-    "jQuery": "^3.2.1"
+    "angular": "^1.6.4",
+    "jquery": "^3.2.1",
+    "font-awesome": "^4.7.0",
+    "angular-route": "^1.6.4"
   }
 }
