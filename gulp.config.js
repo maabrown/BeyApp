@@ -22,6 +22,8 @@ module.exports = function() {
 		// Temp 
 		temp: temp,
 
+		reloadDelay: 2000,
+
 		// both of these are for scoping reasons
 		// codebase above is only local to the function
 		// but by returning the config object you will lose them

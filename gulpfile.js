@@ -104,6 +104,11 @@ gulp.task('serve-dev', ['inject'], function() {
 		// ev is the file changed
 		.on('restart', ['vet'], function(ev) {
 			$.util.log('restarted')
+			// gives server enough time to restart itself
+			setTimeout(function() {
+				$.util.log('reloading now..')
+				browserSync.reload()
+			}, gulpConfig.reloadDelay)
 		})
 		.on('start', function() {
 			$.util.log('nodemon has started')
@@ -171,7 +176,7 @@ function startBrowserSync() {
 
 		notify: true,
 
-		reloadDelay: 1000
+		reloadDelay: 0
 	}
 
 	browserSync(options);
