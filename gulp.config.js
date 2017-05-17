@@ -49,30 +49,9 @@ module.exports = function() {
 		// Sass file
 		allSass: './styles.scss',
 
-		bower: {
-			// use require because that is what wiredep requests in documentation
-			json: require('./bower.json'),
-			// where are the actual components
-			directory: './bower_components/',
-			// in the original index.html they would have ../../../bower_components/jQuery/[etc]
-			// using ignorePath when it puts those files back on the index.html
-			// it will remove the original ../../ so it would just read ../bower_components/[etc]
-			ignorePath: '../..'
-		}
 	};
 
-	config.getWiredepDefaultOptions = function() {
-		var options = {
-			// find bower JSON
-			bowerJson: config.bower.json,
-			// where are they located
-			directory: config.bower.directory,
-			// to tell it to ignore going back to directories
-			ignorePath: config.bower.ignorePath
-		}
 
-		return options;
-	};
 
 	return config;
 }

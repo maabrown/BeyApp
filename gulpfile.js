@@ -56,15 +56,12 @@ gulp.task('sass-watcher', function() {
 // works for all files except our CSS
 gulp.task('wiredep', function() {
 	console.log('wiredep - inserting bower css js and app js');
-	var options = gulpConfig.getWiredepDefaultOptions();
 	// .stream is a config of wiredep that allows for it to be used in gulp stream below
 	var wiredep = require('wiredep').stream;
 
 	return gulp
 		// go get index.html file which has <-- bower:css -->
 		.src(gulpConfig.index)
-		// call wiredep, look up in bower.json - find run-time dependencies (aka not devDependencies)
-		.pipe(wiredep(options))
 		// call gulp-inject, look up files in gulpConfig.js
 		.pipe($.inject(gulp.src(gulpConfig.js), {relative: true}))
 		// gulp is going to inject both of these on the page - bower first and then gulp-inject
