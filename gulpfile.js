@@ -86,7 +86,6 @@ gulp.task('inject', ['wiredep', 'sass'], function() {
 })
 
 gulp.task('serve-dev', ['inject'], function() {
-
 })
 
 function clean(path) {
