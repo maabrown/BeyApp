@@ -9,6 +9,7 @@ const args = require('yargs').argv;
 const gulpConfig = require('./gulp.config')();
 const del = require('del');
 const path = require('path');
+var port = process.env.PORT || gulpConfig.defaultPort;
 
 const $ = require('gulp-load-plugins')({lazy: true});
 
@@ -83,6 +84,34 @@ gulp.task('inject', ['wiredep', 'sass'], function() {
 })
 
 gulp.task('serve-dev', ['inject'], function() {
+	var isDev = true;
+
+	var nodeOptions = {
+		// path to server.js
+		script: gulpConfig.nodeServer,
+		delayTime: 1,
+		env: {
+			'PORT': port,
+			'NODE_ENV': isDev ? 'dev' : 'build' 
+		},
+		watch: [gulpConfig.server]
+
+	}
+
+	return $.nodemon(nodeOptions)
+		// ev is the file changed
+		.on('restart', ['vet'], function(ev) {
+			$.util.log('restarted')
+		})
+		.on('start', function() {
+			$.util.log('nodemon has started')
+		})
+		.on('crash', function() {
+			console.log('crashed')
+		})
+		.on('exit', function() {
+			console.log('exit')
+		})
 })
 
 function clean(path) {

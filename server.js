@@ -18,10 +18,7 @@ const path = require('path');
 // signs into the database
 var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 
-
 // var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
-
-// var db;
 
 mongoose.connect(url);
 var mongooseDB = mongoose.connection;
@@ -34,6 +31,8 @@ mongooseDB.once('open', function () {
 // process.env is the environment variable which can change depending 
 // on if it is on Heroku or on your local computer
 app.set('port', process.env.PORT || 8080);
+
+
 
 // serves static conent for the app from the public directory
 // so prod/public/index.html is /index.html for the app

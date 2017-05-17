@@ -49,6 +49,13 @@ module.exports = function() {
 		// Sass file
 		allSass: './styles.scss',
 
+		defaultPort: 7203,
+		// where the app is running from
+		nodeServer: 'server.js',
+
+		// the files it shoul be watching
+		server: 'server.js'
+
 	};
 
 
