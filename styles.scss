@@ -198,3 +198,73 @@ button > img {
 		height: 2em;
 	}
 }
+
+/*
+	THIS IS FOR THE RESULTS PAGE
+	Starting with desktop
+*/
+
+#resultsPage #header > div > img {
+	width: 5em;
+}
+
+#resultsPage {
+	
+	.searchTermDiv {
+		display: inline;
+		background-color: transparent;
+	    color: black;
+	    outline: none;
+	    outline-style: none;
+	    border-top: none;
+	    border-left: none;
+	    border-right: none;
+	    border-bottom: solid #C1B4C1 .2em;
+	    padding: 3px 10px;
+	    font-weight: 900;
+	    font-size: 1.5em;
+	    padding-right: 4em;
+	    padding-left: 4em;
+	}
+
+	.infoContainer {
+		margin-left: 6em;
+		margin-right: 6em;
+		margin-top: 5em;
+	}
+
+	.songDefinition {
+
+		h3 {
+			display: inline;
+			font-weight: 200;
+			padding-bottom: 2em;
+		}
+
+		.totalMatchesDiv {
+			display: inline;
+			background-color: transparent;
+		    color: black;
+		    outline: none;
+		    outline-style: none;
+		    border-top: none;
+		    border-left: none;
+		    border-right: none;
+		    border-bottom: solid #C1B4C1 .2em;
+		    padding: 3px 10px;
+		    font-weight: 900;
+		    font-size: 1.5em;
+		    padding-right: 1em;
+		    padding-left: 1em;
+		}
+
+		.songListResults {
+			margin-top: 2em;
+		}
+
+		li {
+			font-size: 1.3em;
+		}
+	}
+
+}

@@ -1,19 +1,53 @@
-<h1>These are your results</h1>
+<style type="text/css">
+	body {
+		background-color: #F9F7EB;
+	}
+</style>
 
-<h2>You searched for: {{ searchTerm}}</h2>
+<div id="resultsPage" class="container-fluid">
+	
+	<div id="header">
+			<div>
+				<img src="../../../images/Logos/bey-logo-black-horizontal.png" class="logo">
+			</div>
+	</div>
 
-<h2>It was found {{totalMatches}} times</h2>
+	<hr class="underline">
+	
+	<div class="infoContainer">
+		
+		<div class="songDefinition">
 
-<h2> Found in the following songs:</h2>
+			<div class="lineInfo">
+			<h3>You searched for the word: </h3> <div class="searchTermDiv">{{ searchTerm}}</div>
+			</div>
 
-<ul>
-	<li ng-repeat="x in songs">
-		<span> {{ x.title }}</span> <span> {{ x.matches }}</span>
-	</li>
-</ul>
+			<br>
 
-<result-tabs></result-tabs>
+			<div class="lineInfo">
+			<h3>It was found </h3> <div class="totalMatchesDiv">{{totalMatches}}</div> <h3> times in the following songs:</h3>
+			</div>
 
-<h2> {{ error }}</h2>
+			<ul class="songListResults">
+				<li ng-repeat="x in songs">
+					<span> {{ x.title }}</span>, <span> {{ x.matches }} times</span>
+				</li>
+			</ul>
 
-<a href ng-href="/search">New Search</a>
+			<br>
+
+			<div class="lineInfo">
+				<h3>The word </h3> <div class="searchTermDiv">{{ searchTerm }}</div> <h3> also appears in these albums.</h3>
+			</div>
+
+		</div>
+
+		<result-tabs></result-tabs>
+
+		<h2> {{ error }}</h2>
+
+		<a href ng-href="/search">New Search</a>
+	
+	<div>
+
+</div>
