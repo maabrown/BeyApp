@@ -1,5 +1,6 @@
 angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $sce, $location, ResultCall) {
 	
+
 	$scope.highlight = function() {
 		var context = document.getElementById('lyricsList');
 		var highlightOptions = {
@@ -40,7 +41,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					// to then be used on the view that you would like and accessible on the 
 					// controller
 					// http://stackoverflow.com/questions/21453697/angularjs-access-parent-scope-from-child-controller
-					
+					console.log(response.data);
 					$scope.$parent.songs = response.data;
 					$scope.$parent.searchTerm = response.config.params.searchTerm;
 					$scope.$parent.dangerouslyArray = [];
@@ -68,8 +69,12 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 							$scope.$parent.beyonceArray.push(element);
 						}
 						else if (element.album === "Lemonade") {
+							
 							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');
+							
 							element.lyrics = $sce.trustAsHtml(element.lyrics);
+							console.log(element.lyrics);
+							console.log(element);
 							$scope.$parent.lemonadeArray.push(element);
 						}
 					});
@@ -85,6 +90,8 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					$scope.$parent.totalMatches = totalMatches[0]['totalMatches'];
 
 					$scope.totalMatches = totalMatches[0]['totalMatches'];
+
+					console.log($scope.$parent.lemonadeArray);
 
 					// this redirects the app without reloading the page
 					$location.path('/results');

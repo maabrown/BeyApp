@@ -1,21 +1,50 @@
 <!-- using angular-ui -->
 <uib-tabset justified="true">
-	<uib-tab heading="Dangerously In Love ({{numOfDangerousSongs}})"></uib-tab>
-	<uib-tab heading="B'Day ({{numOfBdaySongs}})"></uib-tab>
-	<uib-tab heading="I Am...Sasha Fierce ({{numOfSashaSongs}})"></uib-tab>
-	<uib-tab heading="4 ({{numOfFourSongs}})"></uib-tab>
-	<uib-tab heading="Beyonce ({{numOfBeyonceSongs}})"></uib-tab>
-	<uib-tab heading="Lemonade ({{numOfLemonadeSongs}})">
-		<ul id="lyricsList">
-			<li ng-repeat="songs in lemonadeArray">
-				<uib-accordion>
-					<div uib-accordion-group class="panel-default" heading="{{songs.title}}" id="songTitleDiv">
+	<uib-tab>
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/dangerously.jpg">
+		</uib-tab-heading>
+	</uib-tab>
+
+	<uib-tab heading="B'Day ({{numOfBdaySongs}})">
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/bday.png">
+		</uib-tab-heading>
+	</uib-tab>
+
+	<uib-tab heading="I Am...Sasha Fierce ({{numOfSashaSongs}})">
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/sasha.png">
+		</uib-tab-heading>
+	</uib-tab>
+
+	<uib-tab heading="4 ({{numOfFourSongs}})">
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/4.jpg">
+		</uib-tab-heading>
+	</uib-tab>
+
+	<uib-tab heading="Beyonce ({{numOfBeyonceSongs}})">
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/beyonce.png">
+		</uib-tab-heading>
+	</uib-tab>
+	
+	<uib-tab>
+		<uib-tab-heading>
+			<img src="../images/BeyonceAlbums/Lemonade.png">
+		</uib-tab-heading>
+		<uib-accordion>
+			<div ng-repeat="songs in lemonadeArray">
+				
+					<div uib-accordion-group class="panel-default" heading="{{songs.title}}" class="songTitleDiv">
 						<button ng-click="highlight()">Highlight</button>
 						<button ng-click="unhighlight()">Unhighlight</button>
 						<div ng-bind-html=songs.lyrics class="songLyricsDiv"></div>
 					</div>
-				</uib-accordion>
-			</li>
-		</ul>
+				
+			</div>
+		</uib-accordion>		
 	</uib-tab>
+	
 </uib-tabset>

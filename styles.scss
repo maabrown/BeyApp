@@ -9,7 +9,7 @@ body, html {
 }
 
 // sets Queens English logo on desktop
-#header > div > img {
+#header > div > a > img {
 	width: 8em;
 }
 
@@ -131,7 +131,7 @@ button > img {
 
 @media screen and (max-width: 767px) {
 	
-	#header > div > img.logo {
+	#header > div > a > img.logo {
 		width: 8em;
 		margin-top: .5em;
 	}
