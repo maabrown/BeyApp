@@ -34,17 +34,26 @@
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/Lemonade.png">
 		</uib-tab-heading>
-		<uib-accordion>
-			<div ng-repeat="songs in lemonadeArray">
-				
-					<div uib-accordion-group class="panel-default" heading="{{songs.title}}" class="songTitleDiv">
-						<button ng-click="highlight()">Highlight</button>
-						<button ng-click="unhighlight()">Unhighlight</button>
-						<div ng-bind-html=songs.lyrics class="songLyricsDiv"></div>
-					</div>
-				
+		
+		<div class="tabResults">
+			<div>
+				<img src="../images/BeyonceAlbums/Lemonade.png">
 			</div>
-		</uib-accordion>		
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in lemonadeArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" heading="{{songs.title}}" class="songTitleDiv">
+								<button ng-click="highlight()">Highlight</button>
+								<button ng-click="unhighlight()">Unhighlight</button>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv"></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
 	</uib-tab>
 	
 </uib-tabset>

@@ -2,17 +2,18 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 	
 
 	$scope.highlight = function() {
-		var context = document.getElementById('lyricsList');
-		var highlightOptions = {
-			"exclude" : ["#songTitleDiv"]
-		};
+		var context = document.querySelectorAll('div.songLyricsDiv');
+		console.log(context);
+		// var highlightOptions = {
+		// 	"exclude" : ["#songTitleDiv"]
+		// };
 
 		var instance = new Mark(context);
-		instance.mark($scope.$parent.searchTerm, highlightOptions);
+		instance.mark("love");
 	}
 
 	$scope.unhighlight = function() {
-		var context = document.getElementById('lyricsList')
+		var context = document.querySelectorAll('div.songLyricsDiv')
 		var instance = new Mark(context);
 		instance.unmark();
 	}

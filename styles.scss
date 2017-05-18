@@ -267,4 +267,40 @@ button > img {
 		}
 	}
 
+	div.tabResults {
+		margin-top: 1em;
+		background-color: #D2DCD1;
+		padding-top: 3em;
+		padding-left: 3em;
+		padding-bottom: 3em;
+
+		img {
+			height: 23em;
+		}
+	}
+
+	div.tabResults > div {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	div.tabResults div.songListings {
+		margin-left: 4em;
+	}
+
+	.songHeader {
+		background-color: transparent;
+	}
+
+	.panel-default>.panel-heading {
+		background-color: transparent;
+		border-bottom-color: black;
+		border-bottom-style: solid;
+		border-bottom-width: .1em;
+	}
+}
+
+mark {
+	background: red;
+	color: black;
 }
