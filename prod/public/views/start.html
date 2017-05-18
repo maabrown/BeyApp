@@ -12,44 +12,65 @@
 </style>
 
 
-<div>
-	<div id="header">
-		<div>
-			<img src="../../../images/Logos/bey-logo-black-horizontal.png" class="logo">
-		</div>
-	</div>
-
-	<hr class="underline">
-
-	<div id="appText" class="container-fluid">
-		<div class="title-opaque-box">
-		
-		<div class="row justify-content-center title-row">
-			
-				<h1 class="title text-center" >Welcome to <br>The Queen's English!</h1>
-			
-		</div>
-		
-		<div class="row justify-content-center description-row">
-			<h3 class="description text-center">Because my Queen deserves more than my money, she also deserves an API and web app too!</h3>
-		</div>
-		
-		</div>
-
-		<div>
-			<div id="searchLine" class="text-center">
-					<form novalidate ng-submit="getInformation(resultPage.searchTerm)">
-						<input type="text" placeholder="Search Term" required ng-model="resultPage.searchTerm" class="text-line">
-						<button type="submit"><img src="../../images/Magnifying_glass_icon.png"></button>
-					</form>
+	<div>
+		<div id="header">
+			<div>
+				<img src="../../../images/Logos/bey-logo-black-horizontal.png" class="logo">
 			</div>
 		</div>
 
+		<hr class="underline">
+
+		<div id="appText" class="container-fluid">
+			<div class="title-opaque-box">
+			
+			<div class="row justify-content-center title-row">
+				
+					<h1 class="title text-center" >Welcome to <br>The Queen's English!</h1>
+				
+			</div>
+			
+			<div class="row justify-content-center description-row">
+				<h3 class="description text-center">Because my Queen deserves more than my money, she also deserves an API and web app too!</h3>
+			</div>
+			
+			</div>
+
+			<div>
+				<div id="searchLine" class="text-center">
+						<form novalidate ng-submit="getInformation(resultPage.searchTerm)" class="input-group-lg">
+							<input type="text" placeholder="Search Term" required ng-model="resultPage.searchTerm" class="text-line">
+							<button type="submit" id="landingPageSubmitButton"><img src="../../images/Magnifying_glass_icon.png" ></button>
+						</form>
+				</div>
+			</div>
+
+		</div>	
 	</div>
 
+		<i class="fa fa-github"></i>
 
+
+	<footer id="landingPageFooter" class="hidden-xs-down footer text-center">
+		<div class="row">
+			<div class="col-4">
+				<p>Designed by Radhika Bhatt</p>
+				<a href="https://github.com/radhikabhatt26"><i class="fa fa-github" aria-hidden="true"></i></a>
+				<a href="https://twitter.com/superbhatt?lang=en"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="https://www.facebook.com/radhika.bhatt.520"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+			</div>
+			<div class="col-4">
+				<p>Built by Mark Brown II</p>
+				<a href="https://github.com/maabrown"><i class="fa fa-github" aria-hidden="true"></i></a>
+				<a href="https://twitter.com/SayinSomeIsh"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+				<a href="http://maabrown.github.io/"><i class="fa fa-coffee" aria-hidden="true"></i></a>
+			</div>
+			<div class="col-4">
+				<a ng-href="/admin/login">Admin View</a>
+			</div>
+
+		</div>
 		
-	</div>
+	</footer>
 
-	<a class="hidden-xs-down" ng-href="/admin/login">Admin View</a>
 </div>
