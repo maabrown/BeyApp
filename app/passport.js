@@ -160,11 +160,12 @@ module.exports = function(passport) {
 	// req is passed by PassportJS, profile is Google's ID
 	// done is the callback used by PassportJS
 	function(req, accessToken, refreshToken, profile, done) {
-			
+		console.log(req);
 		// if someone is logged in, their information is on req.user via PassportJS
 		if (!req.user) {
 			console.log(profile);
-			User.findOne({ googleId: profile.id}, function(err,user) {
+
+			User.findOne({ 'google.id': profile.id}, function(err,user) {
 				
 				// if err on database side, send error
 				if (err) { return done(err) }
