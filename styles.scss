@@ -328,3 +328,54 @@ button > img {
 
 	}
 }
+
+@media screen and (max-width: 767px) {
+	
+	#resultsPage .infoContainer {
+		margin-top: 2em;
+		margin-right: 2em;
+		margin-left: 2em;
+	}
+
+	#resultsPage {
+
+		.songDefinition {
+
+			margin-bottom: 4em;
+
+			h3 {
+				font-size: 2em;
+				font-weight: 200;
+			}
+
+			.searchTermDiv {
+				padding: 
+			}
+
+			.totalMatchesDiv {
+				display: inline;
+				background-color: transparent;
+			    color: black;
+			    outline: none;
+			    outline-style: none;
+			    border-top: none;
+			    border-left: none;
+			    border-right: none;
+			    border-bottom: solid #C1B4C1 .2em;
+			    
+			    font-weight: 900;
+			    font-size: 1.5em;
+			    
+			    padding-left: 1em;
+			}
+
+			.songListResults {
+				margin-top: 2em;
+			}
+
+			li {
+				font-size: 1.3em;
+			}
+		}
+	}
+}

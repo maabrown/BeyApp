@@ -237,3 +237,31 @@ button > img {
 
 #resultsPage img.tabPicture {
   width: 10em; }
+
+@media screen and (max-width: 767px) {
+  #resultsPage .infoContainer {
+    margin-top: 2em; }
+  #resultsPage .songDefinition {
+    margin-bottom: 4em; }
+    #resultsPage .songDefinition h3 {
+      font-size: 1em;
+      font-weight: 200; }
+    #resultsPage .songDefinition .totalMatchesDiv {
+      display: inline;
+      background-color: transparent;
+      color: black;
+      outline: none;
+      outline-style: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: solid #C1B4C1 .2em;
+      padding: 3px 10px;
+      font-weight: 900;
+      font-size: 1.5em;
+      padding-right: 1em;
+      padding-left: 1em; }
+    #resultsPage .songDefinition .songListResults {
+      margin-top: 2em; }
+    #resultsPage .songDefinition li {
+      font-size: 1.3em; } }

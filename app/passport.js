@@ -3,7 +3,7 @@ const User = require('./models/user');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // loads in Google+ authentication
-// var configAuth = require('../cred/googleCredentials.js');
+var configAuth = require('../cred/googleCredentials.js');
 
 module.exports = function(passport) {
 	
@@ -149,9 +149,9 @@ module.exports = function(passport) {
 	passport.use(new GoogleStrategy({
 
 		// PROD
-		clientID : process.env.GOOGLE_CLIENTID,
-		clientSecret : process.env.GOOGLE_CLIENTSECRET,
-		callbackURL: process.env.GOOGLE_CLIENTCALLBACK,
+		clientID : (process.env.GOOGLE_CLIENTID || configAuth.GOOGLE_CLIENTID),
+		clientSecret : (process.env.GOOGLE_CLIENTSECRET || configAuth.GOOGLE_CLIENTSECRET),
+		callbackURL: (process.env.GOOGLE_CLIENTCALLBACK || configAuth.GOOGLE_CLIENTCALLBACK),
 		passReqToCallback: true // passes the req to callback
 
 		// DEV
