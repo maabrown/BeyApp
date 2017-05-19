@@ -52,7 +52,7 @@ module.exports = function(passport) {
 
 							// if we find that the user already exists
 							if (user) {
-								console.log(user);
+								
 								return done(null, { error: 'This email is already taken'});
 							}
 
@@ -68,7 +68,7 @@ module.exports = function(passport) {
 								newUser.save( function(err) {
 									if (err) { throw err }
 									else {
-										console.log('saved');
+										
 										// this 'done' function is from PassportJS - validation callback
 										// passes the user back to passport
 										// make sure that this is newUser and not user
@@ -91,7 +91,7 @@ module.exports = function(passport) {
 							if (err) { throw err }
 
 							else {
-								console.log('local added');
+								
 								return done(null, user);
 							}
 						})
@@ -160,10 +160,9 @@ module.exports = function(passport) {
 	// req is passed by PassportJS, profile is Google's ID
 	// done is the callback used by PassportJS
 	function(req, accessToken, refreshToken, profile, done) {
-		console.log(req);
+
 		// if someone is logged in, their information is on req.user via PassportJS
 		if (!req.user) {
-			console.log(profile);
 
 			User.findOne({ 'google.id': profile.id}, function(err,user) {
 				
@@ -190,7 +189,7 @@ module.exports = function(passport) {
 				}
 				else {
 					var newUser = new User();
-					console.log(profile);
+
 					// Using the schema created for model in User.js
 					newUser.google.id = profile.id;
 					newUser.google.token = accessToken;
