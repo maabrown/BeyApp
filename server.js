@@ -21,7 +21,7 @@ const path = require('path');
 // PROD
 var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
 
-mongoose.connect(url);
+mongoose.connect(url2);
 var mongooseDB = mongoose.connection;
 mongooseDB.once('open', function () {
 	console.log('opened');
