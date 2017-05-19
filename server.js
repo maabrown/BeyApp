@@ -15,13 +15,13 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const path = require('path');
 
-// signs into the database
-var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
+// signs into the database locally
+// var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 
+// production
+var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
 
-// var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
-
-mongoose.connect(url);
+mongoose.connect(url2);
 var mongooseDB = mongoose.connection;
 mongooseDB.once('open', function () {
 	console.log('opened');
