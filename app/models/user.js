@@ -12,7 +12,10 @@ var userSchema = mongoose.Schema({
 		email		: String,
 		name		: String
 	},
-	permission : String
+	permission : {
+		add			: String,
+		delete		: String
+	}
 	},
 	{ collection: 'Users'} 
 	);
