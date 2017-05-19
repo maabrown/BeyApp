@@ -298,9 +298,13 @@ button > img {
 		border-bottom-style: solid;
 		border-bottom-width: .1em;
 	}
-}
 
-mark {
-	background: red;
-	color: black;
+	.iconStyle {
+		margin-left: 2em;
+		float: right;
+	}
+
+	.highlightToggleStyle {
+
+	}
 }

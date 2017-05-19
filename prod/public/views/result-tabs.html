@@ -32,7 +32,7 @@
 	
 	<uib-tab>
 		<uib-tab-heading>
-			<img src="../images/BeyonceAlbums/Lemonade.png">
+			<img src="../images/BeyonceAlbums/Lemonade.png" ng-click="buildToggle()">
 		</uib-tab-heading>
 		
 		<div class="tabResults">
@@ -44,10 +44,21 @@
 				<uib-accordion>
 					<div ng-repeat="songs in lemonadeArray">
 						
-							<div uib-accordion-group class="panel-default songHeader" heading="{{songs.title}}" class="songTitleDiv">
-								<button ng-click="highlight()">Highlight</button>
-								<button ng-click="unhighlight()">Unhighlight</button>
-								<div ng-bind-html=songs.lyrics class="songLyricsDiv"></div>
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<!-- <button ng-click="highlight()">Highlight</button> -->
+								<!-- <button ng-click="unhighlight()">Unhighlight</button> -->
+								<div class="checkboxDiv" ng-click="toggleClick()">
+								<input type="checkbox" class="highlightCheckbox" data-on="Unhighlight Words" data-off="Highlight Words" data-toggle="toggle">
+								</div>
+<!-- 								<script type="text/javascript">
+									  $(function() {
+    $('#highlightCheckbox').bootstrapToggle();
+  })
+								</script> -->
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
 							</div>
 						
 					</div>
@@ -55,5 +66,4 @@
 			</div>
 		</div>
 	</uib-tab>
-	
 </uib-tabset>

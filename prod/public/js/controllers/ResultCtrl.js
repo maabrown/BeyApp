@@ -1,24 +1,55 @@
 angular.module('ResultCtrl', []).controller('ResultController', function($http,$scope, $sce, $location, ResultCall) {
-	
+
+	$scope.buildToggle = function() {
+		$(function() {
+		    $('.highlightCheckbox').bootstrapToggle({
+		    	width: '45%',
+		    	// on: 'Highlight Words',
+		    	// off: 'Unhighlight Words'
+		    	style: 'highlightToggleStyle'
+		    });
+		  })
+		console.log('click works');
+	}
+
+	$scope.toggleClick = function() {
+		$(function() {
+			console.log($('.highlightCheckbox').prop('checked'))
+			console.log($('.highlightCheckbox'))
+			console.log()
+
+			if ($('.highlightCheckbox').prop('checked')) {
+				var context = document.querySelectorAll('div.songLyricsDiv');
+				console.log(context);
+				var instance = new Mark(context);
+				instance.mark($scope.$parent.searchTerm);
+			} else {
+				console.log('false');
+				var context = document.querySelectorAll('div.songLyricsDiv')
+				var instance = new Mark(context);
+				instance.unmark();
+			}
+
+		})
+		console.log('licked')
+	}
 
 	$scope.highlight = function() {
-		var context = document.querySelectorAll('div.songLyricsDiv');
+		
 		console.log(context);
 		// var highlightOptions = {
 		// 	"exclude" : ["#songTitleDiv"]
 		// };
 
-		var instance = new Mark(context);
+		
 		instance.mark("love");
 	}
 
 	$scope.unhighlight = function() {
-		var context = document.querySelectorAll('div.songLyricsDiv')
-		var instance = new Mark(context);
-		instance.unmark();
+
 	}
 
-	$scope.albumNames = ['Dangerously In Love', 'B\'Day','I Am... Sasha Fierce', '4', 'Beyonce', 'Lemonade' ]
+	$scope.albumNames = ['Dangerously In Love', 'BDay','I Am...Sasha Fierce', '4', 'Beyonce', 'Lemonade' ]
 	$scope.getInformation = function (term) {
 		
 		//getLyrics is defined as a property of the factory 'ResultCall' defined in ResultService.js - returns a promise
@@ -55,27 +86,35 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 					response.data.forEach( function(element, index, array) {
 
 						if (element.album === "Dangerously in Love") {
-							$scope.$parentdangerouslyArray.push(element);
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
+							$scope.$parent.dangerouslyArray.push(element);
 						}
-						else if (element.album === "B'Day") {
-							$scope.$parentbdayArray.push(element);
+						else if (element.album === "BDay") {
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
+							$scope.$parent.bdayArray.push(element);
 						}
-						else if (element.album === "I Am... Sasha Fierce"){
+						else if (element.album === "I Am...Sasha Fierce"){
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
 							$scope.$parent.sashaArray.push(element);
 						}
 						else if (element.album == "4") {
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
 							$scope.$parent.fourArray.push(element);
 						}
 						else if (element.album === "Beyonce") {
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
+							element.lyrics = $sce.trustAsHtml(element.lyrics);
 							$scope.$parent.beyonceArray.push(element);
+
 						}
 						else if (element.album === "Lemonade") {
 							
-							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');
-							
+							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
 							element.lyrics = $sce.trustAsHtml(element.lyrics);
-							console.log(element.lyrics);
-							console.log(element);
 							$scope.$parent.lemonadeArray.push(element);
 						}
 					});
