@@ -232,3 +232,6 @@ button > img {
 
 #resultsPage .nav-tabs > li.active > a {
   background-color: #D2DCD1; }
+
+#resultsPage img.tabPicture {
+  width: 10em; }
