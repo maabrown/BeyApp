@@ -149,9 +149,9 @@ module.exports = function(passport) {
 	passport.use(new GoogleStrategy({
 
 		// this idenfies the app
-		clientID : configAuth.GOOGLE_CLIENTID,
-		clientSecret : configAuth.GOOGLE_CLIENTSECRET,
-		callbackURL: configAuth.GOOGLE_CLIENTCALLBACK,
+		clientID : process.env.GOOGLE_CLIENTID,
+		clientSecret : process.env.GOOGLE_CLIENTSECRET,
+		callbackURL: process.env.GOOGLE_CLIENTCALLBACK,
 		passReqToCallback: true // passes the req to callback
 	
 	},

@@ -49,7 +49,7 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 // setting session secret - used to create the hash for cryptography
-app.use(session({ secret: cred.secret }))
+app.use(session({ secret: process.env.SECRET }))
 
 app.use(passport.initialize());
 
