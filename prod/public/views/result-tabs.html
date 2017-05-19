@@ -1,36 +1,142 @@
 <!-- using angular-ui -->
-<uib-tabset justified="true">
-	<uib-tab>
+<uib-tabset justified="false">
+	<uib-tab ng-hide="!numOfDangerousSongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/dangerously.jpg">
 		</uib-tab-heading>
+
+		<div class="tabResults" ng-hide="!numOfDangerousSongs">
+			<div>
+				<img src="../images/BeyonceAlbums/dangerously.jpg">
+			</div>
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in dangerouslyArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>		
 	</uib-tab>
 
-	<uib-tab heading="B'Day ({{numOfBdaySongs}})">
+	<uib-tab ng-hide="!numOfBdaySongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/bday.png">
 		</uib-tab-heading>
+
+		<div class="tabResults">
+			<div>
+				<img src="../images/BeyonceAlbums/bday.png">
+			</div>
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in bdayArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
+
 	</uib-tab>
 
-	<uib-tab heading="I Am...Sasha Fierce ({{numOfSashaSongs}})">
+	<uib-tab ng-hide="!numOfSashaSongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/sasha.png">
 		</uib-tab-heading>
+
+		<div class="tabResults">
+			<div>
+				<img src="../images/BeyonceAlbums/sasha.png">
+			</div>
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in sashaArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>		
 	</uib-tab>
 
-	<uib-tab heading="4 ({{numOfFourSongs}})">
+	<uib-tab ng-hide="!numOfFourSongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/4.jpg">
 		</uib-tab-heading>
+
+		<div class="tabResults">
+			<div>
+				<img src="../images/BeyonceAlbums/4.jpg">
+			</div>
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in fourArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
 	</uib-tab>
 
-	<uib-tab heading="Beyonce ({{numOfBeyonceSongs}})">
+	<uib-tab ng-hide="!numOfBeyonceSongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/beyonce.png">
 		</uib-tab-heading>
+
+		<div class="tabResults">
+			<div>
+				<img src="../images/BeyonceAlbums/beyonce.png">
+			</div>
+			
+			<div class="songListings">
+				<uib-accordion>
+					<div ng-repeat="songs in beyonceArray">
+						
+							<div uib-accordion-group class="panel-default songHeader" class="songTitleDiv song{{index}}"  >
+								<uib-accordion-heading class="accordionHeading">
+									{{songs.title}} <span><i class="fa fa-chevron-circle-down iconStyle"></i></span>
+								</uib-accordion-heading>
+								<div ng-bind-html=songs.lyrics class="songLyricsDiv lyricsDiv{{$index}}" ></div>
+							</div>
+						
+					</div>
+				</uib-accordion>
+			</div>
+		</div>
 	</uib-tab>
 	
-	<uib-tab>
+	<uib-tab ng-hide="!numOfLemonadeSongs">
 		<uib-tab-heading>
 			<img src="../images/BeyonceAlbums/Lemonade.png" ng-click="buildToggle()">
 		</uib-tab-heading>
@@ -50,9 +156,8 @@
 								</uib-accordion-heading>
 								<!-- <button ng-click="highlight()">Highlight</button> -->
 								<!-- <button ng-click="unhighlight()">Unhighlight</button> -->
-								<div class="checkboxDiv" ng-click="toggleClick()">
-								<input type="checkbox" class="highlightCheckbox" data-on="Unhighlight Words" data-off="Highlight Words" data-toggle="toggle">
-								</div>
+								<!-- <div class="checkboxDiv" ng-click="toggleClick()"> -->
+								<!-- <input type="checkbox" class="highlightCheckbox" data-on="Unhighlight Words" data-off="Highlight Words" data-toggle="toggle"> -->
 <!-- 								<script type="text/javascript">
 									  $(function() {
     $('#highlightCheckbox').bootstrapToggle();

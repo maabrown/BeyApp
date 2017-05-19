@@ -85,7 +85,8 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 
 					response.data.forEach( function(element, index, array) {
 
-						if (element.album === "Dangerously in Love") {
+						if (element.album === "Dangerously In Love") {
+							console.log('dangerously happening')
 							element.lyrics = element.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br />');							
 							element.lyrics = $sce.trustAsHtml(element.lyrics);
 							$scope.$parent.dangerouslyArray.push(element);
@@ -131,7 +132,7 @@ angular.module('ResultCtrl', []).controller('ResultController', function($http,$
 
 					$scope.totalMatches = totalMatches[0]['totalMatches'];
 
-					console.log($scope.$parent.lemonadeArray);
+					console.log($scope.$parent.dangerouslyArray);
 
 					// this redirects the app without reloading the page
 					$location.path('/results');

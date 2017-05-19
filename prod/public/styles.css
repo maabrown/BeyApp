@@ -168,36 +168,38 @@ button > img {
   padding-left: 4em; }
 
 #resultsPage .infoContainer {
-  margin-left: 6em;
-  margin-right: 6em;
+  margin-left: 5em;
+  margin-right: 5em;
   margin-top: 5em; }
+  #resultsPage .infoContainer > a {
+    font-size: 3em;
+    color: #C1B4C1; }
 
-#resultsPage .songDefinition h3 {
-  display: inline;
-  font-weight: 200;
-  padding-bottom: 2em; }
-
-#resultsPage .songDefinition .totalMatchesDiv {
-  display: inline;
-  background-color: transparent;
-  color: black;
-  outline: none;
-  outline-style: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: solid #C1B4C1 .2em;
-  padding: 3px 10px;
-  font-weight: 900;
-  font-size: 1.5em;
-  padding-right: 1em;
-  padding-left: 1em; }
-
-#resultsPage .songDefinition .songListResults {
-  margin-top: 2em; }
-
-#resultsPage .songDefinition li {
-  font-size: 1.3em; }
+#resultsPage .songDefinition {
+  margin-bottom: 4em; }
+  #resultsPage .songDefinition h3 {
+    display: inline;
+    font-weight: 200;
+    padding-bottom: 2em; }
+  #resultsPage .songDefinition .totalMatchesDiv {
+    display: inline;
+    background-color: transparent;
+    color: black;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #C1B4C1 .2em;
+    padding: 3px 10px;
+    font-weight: 900;
+    font-size: 1.5em;
+    padding-right: 1em;
+    padding-left: 1em; }
+  #resultsPage .songDefinition .songListResults {
+    margin-top: 2em; }
+  #resultsPage .songDefinition li {
+    font-size: 1.3em; }
 
 #resultsPage div.tabResults {
   margin-top: 1em;
@@ -227,3 +229,6 @@ button > img {
 #resultsPage .iconStyle {
   margin-left: 2em;
   float: right; }
+
+#resultsPage .nav-tabs > li.active > a {
+  background-color: #D2DCD1; }
