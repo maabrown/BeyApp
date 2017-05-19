@@ -3,7 +3,7 @@ const app = express();
 //  pulls information from HTML POST
 const bodyParser = require('body-parser');
 // /const MongoClient = require('mongodb').MongoClient;
-const cred = require('./cred/credentials.js');
+// const cred = require('./cred/credentials.js');
 // delete highlighter
 const highlighter = require('keyword-highlighter');
 // passport for authentication
@@ -16,10 +16,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // DEV
-var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
+// var url = 'mongodb://' + cred.username + ':' + cred.password + cred.datab;
 
 // PROD
-// var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
+var url2 = 'mongodb://' + process.env.USERNAME + ':' + process.env.PASSWORD + process.env.DATAB;
 
 mongoose.connect(url);
 var mongooseDB = mongoose.connection;
@@ -53,7 +53,7 @@ app.use(morgan('dev'));
 app.use(session({ secret: process.env.SECRET }))
 
 // DEV
-app.use(session({ secret: cred.secret}))
+// app.use(session({ secret: cred.secret}))
 
 app.use(passport.initialize());
 
