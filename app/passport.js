@@ -3,7 +3,7 @@ const User = require('./models/user');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // loads in Google+ authentication
-var configAuth = require('../cred/googleCredentials.js');
+// var configAuth = require('../cred/googleCredentials.js');
 
 module.exports = function(passport) {
 	
