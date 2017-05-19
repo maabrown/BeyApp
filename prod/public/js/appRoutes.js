@@ -30,12 +30,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'AddSongFormController'
 		})
 
-		// search functionality
-		.when('/search', {
-			templateUrl: '/../../views/search.html',
-			controller: 'ResultController'
-		})
-
 		// user profile information
 		.when('/profile', {
 			templateUrl: '/../../views/profile.html',
