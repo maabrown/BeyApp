@@ -142,7 +142,9 @@ button > img {
   #searchLine {
     margin-top: 1em; }
   button > img {
-    height: 2em; } }
+    height: 2em; }
+  .hidden-xs-down {
+    visibility: hidden; } }
 
 /*
 	THIS IS FOR THE RESULTS PAGE
