@@ -144,7 +144,7 @@ button > img {
   button > img {
     height: 2em; }
   .hidden-xs-down {
-    visibility: hidden; } }
+    display: none; } }
 
 /*
 	THIS IS FOR THE RESULTS PAGE
@@ -240,14 +240,20 @@ button > img {
 
 @media screen and (max-width: 767px) {
   #resultsPage .infoContainer {
-    margin-top: 2em; }
+    margin-top: 2em;
+    margin-right: 2em;
+    margin-left: 2em; }
   #resultsPage .songDefinition {
     margin-bottom: 4em; }
     #resultsPage .songDefinition h3 {
-      font-size: 1em;
+      font-size: 2em;
       font-weight: 200; }
+    #resultsPage .songDefinition .searchTermDiv {
+      display: block;
+      text-align: center; }
     #resultsPage .songDefinition .totalMatchesDiv {
-      display: inline;
+      display: block;
+      text-align: center;
       background-color: transparent;
       color: black;
       outline: none;
@@ -256,11 +262,10 @@ button > img {
       border-left: none;
       border-right: none;
       border-bottom: solid #C1B4C1 .2em;
-      padding: 3px 10px;
       font-weight: 900;
       font-size: 1.5em;
-      padding-right: 1em;
-      padding-left: 1em; }
+      padding-left: 1em;
+      margin-bottom: .5em; }
     #resultsPage .songDefinition .songListResults {
       margin-top: 2em; }
     #resultsPage .songDefinition li {

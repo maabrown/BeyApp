@@ -199,7 +199,7 @@ button > img {
 	}
 
 	.hidden-xs-down {
-		visibility: hidden;
+		display: none;
 	}
 }
 
@@ -349,11 +349,13 @@ button > img {
 			}
 
 			.searchTermDiv {
-				padding: 
+				display: block;
+				text-align: center;
 			}
 
 			.totalMatchesDiv {
-				display: inline;
+				display: block;
+				text-align: center;
 				background-color: transparent;
 			    color: black;
 			    outline: none;
@@ -367,6 +369,8 @@ button > img {
 			    font-size: 1.5em;
 			    
 			    padding-left: 1em;
+
+			    margin-bottom: .5em;
 			}
 
 			.songListResults {
