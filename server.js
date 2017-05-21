@@ -3,7 +3,7 @@ const app = express();
 //  pulls information from HTML POST
 const bodyParser = require('body-parser');
 // /const MongoClient = require('mongodb').MongoClient;
-const cred = require('./cred/credentials.js');
+// const cred = require('./cred/credentials.js');
 // delete highlighter
 const highlighter = require('keyword-highlighter');
 // passport for authentication
